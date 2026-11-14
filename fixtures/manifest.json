@@ -1,0 +1,10 @@
+[
+  {
+    "path": "R1.fastq",
+    "mate": 1
+  },
+  {
+    "path": "R2.fastq.gz",
+    "mate": 2
+  }
+]

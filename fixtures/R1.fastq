@@ -1,0 +1,26 @@
+@readA/1
+ACGT
+NN
++
+@@++
+II
+@readB 1:N:0:INDEX
+AAAA
++
+IIII
+@dup/1
+AC
++
+II
+@dup/1
+GT
++
+JJ
+@orphan/1
+N
++
+!
+@conflict/1 2:N:0:INDEX
+AC
++
+II

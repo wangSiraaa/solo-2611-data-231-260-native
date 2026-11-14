@@ -1,0 +1,12 @@
+{
+  "pending_record_limit": 2,
+  "max_record_bytes": 65536,
+  "name_rules": [
+    "first whitespace token strips trailing /1 or /2",
+    "second token starts 1: or 2: then declares mate; conflict with suffix invalid",
+    "neither declaration uses manifest mate"
+  ],
+  "quality": "ASCII33..126; count characters exactly",
+  "byte_offsets": "uncompressed stream offsets for gzip; include file_sha256 of compressed original plus compression=gzip",
+  "bounded_error": "illegal nucleotide or quality character with known record length isolates record; quality length overflow/truncation stops source; never resync by @"
+}
