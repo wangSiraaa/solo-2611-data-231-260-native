@@ -1,0 +1,152 @@
+[
+  {
+    "name": "guarded",
+    "expr": {
+      "if": [
+        {
+          "eq": [
+            {
+              "col": "b"
+            },
+            {
+              "literal": 0
+            }
+          ]
+        },
+        {
+          "literal": 0
+        },
+        {
+          "div": [
+            {
+              "col": "a"
+            },
+            {
+              "col": "b"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "branch_cast",
+    "expr": {
+      "if": [
+        {
+          "col": "choose"
+        },
+        {
+          "to_int": {
+            "col": "text"
+          }
+        },
+        {
+          "literal": 7
+        }
+      ]
+    }
+  },
+  {
+    "name": "fallback",
+    "expr": {
+      "coalesce": [
+        {
+          "col": "a"
+        },
+        {
+          "to_int": {
+            "col": "text"
+          }
+        },
+        {
+          "literal": 99
+        }
+      ]
+    }
+  },
+  {
+    "name": "guarded_and",
+    "expr": {
+      "and": [
+        {
+          "eq": [
+            {
+              "col": "b"
+            },
+            {
+              "literal": 0
+            }
+          ]
+        },
+        {
+          "gt": [
+            {
+              "to_int": {
+                "col": "text"
+              }
+            },
+            {
+              "literal": 0
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "overflow",
+    "expr": {
+      "add": [
+        {
+          "col": "a"
+        },
+        {
+          "literal": 1
+        }
+      ]
+    }
+  },
+  {
+    "name": "unguarded_div",
+    "expr": {
+      "div": [
+        {
+          "col": "a"
+        },
+        {
+          "col": "b"
+        }
+      ]
+    }
+  },
+  {
+    "name": "guarded_or",
+    "expr": {
+      "or": [
+        {
+          "eq": [
+            {
+              "col": "b"
+            },
+            {
+              "literal": 0
+            }
+          ]
+        },
+        {
+          "gt": [
+            {
+              "to_int": {
+                "col": "text"
+              }
+            },
+            {
+              "literal": 0
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

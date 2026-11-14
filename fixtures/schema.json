@@ -1,0 +1,7 @@
+{
+  "row_id": "text",
+  "choose": "bool?",
+  "a": "int64?",
+  "b": "int64?",
+  "text": "text?"
+}
