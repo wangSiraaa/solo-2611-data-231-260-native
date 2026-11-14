@@ -1,0 +1,581 @@
+{
+  "note": "amount_avg 输出 num/den 精确分数；decimal6 为声明 6 位精度的小数",
+  "queries": [
+    {
+      "query_id": "region_avg",
+      "plan": {
+        "candidates": [
+          {
+            "name": "v_detail",
+            "usable": true,
+            "reason": "可用",
+            "row_count": 6
+          },
+          {
+            "name": "v_daily",
+            "usable": true,
+            "reason": "可用",
+            "row_count": 4
+          },
+          {
+            "name": "v_avg",
+            "usable": false,
+            "reason": "只有 avg_amount 而没有权重（amount_sum/amount_count），AVG 无法按 总SUM/总非NULLCOUNT 重算，拒绝"
+          },
+          {
+            "name": "v_a",
+            "usable": false,
+            "reason": "候选已按 product∈[\"A\"] 预过滤，而查询未限制该维度（需要全部取值），行域不覆盖"
+          },
+          {
+            "name": "v_stale",
+            "usable": false,
+            "reason": "snapshot 不匹配：候选为 'fact-v0'，查询事实快照为 'fact-v1'（旧快照，拒绝）"
+          }
+        ],
+        "chosen": "v_daily",
+        "fallback": false,
+        "fallback_reason": null,
+        "residual_where": {},
+        "reaggregation": {
+          "count": "COALESCE(SUM(\"n\"), 0)",
+          "amount_sum": "CASE WHEN SUM(\"n_amount\") > 0 THEN SUM(\"s_amount\") END",
+          "amount_avg": "SUM(\"s_amount\") / SUM(\"n_amount\")（零分母 → NULL）"
+        },
+        "sql": "SELECT \"region\", COALESCE(SUM(\"n\"), 0) AS \"count\", CASE WHEN SUM(\"n_amount\") > 0 THEN SUM(\"s_amount\") END AS \"amount_sum\", SUM(\"s_amount\") AS \"amount_avg_num\", SUM(\"n_amount\") AS \"amount_avg_den\" FROM \"v_daily\" GROUP BY \"region\"",
+        "params": []
+      },
+      "result": [
+        {
+          "region": null,
+          "count": 1,
+          "amount_sum": null,
+          "amount_avg": null
+        },
+        {
+          "region": "N",
+          "count": 6,
+          "amount_sum": 170,
+          "amount_avg": {
+            "num": 34,
+            "den": 1,
+            "decimal6": 34.0
+          }
+        },
+        {
+          "region": "S",
+          "count": 1,
+          "amount_sum": 100,
+          "amount_avg": {
+            "num": 100,
+            "den": 1,
+            "decimal6": 100.0
+          }
+        }
+      ],
+      "tables_read": [
+        "v_daily"
+      ],
+      "reconcile": {
+        "ok": true,
+        "diffs": [],
+        "direct_fact_tables": [
+          "fact"
+        ]
+      }
+    },
+    {
+      "query_id": "a_only",
+      "plan": {
+        "candidates": [
+          {
+            "name": "v_detail",
+            "usable": true,
+            "reason": "可用",
+            "row_count": 6
+          },
+          {
+            "name": "v_daily",
+            "usable": false,
+            "reason": "过滤维度 'product' 既未被候选谓词完全满足，也不在候选维度 ['day', 'region'] 中"
+          },
+          {
+            "name": "v_avg",
+            "usable": false,
+            "reason": "只有 avg_amount 而没有权重（amount_sum/amount_count），AVG 无法按 总SUM/总非NULLCOUNT 重算，拒绝"
+          },
+          {
+            "name": "v_a",
+            "usable": true,
+            "reason": "可用",
+            "row_count": 4
+          },
+          {
+            "name": "v_stale",
+            "usable": false,
+            "reason": "snapshot 不匹配：候选为 'fact-v0'，查询事实快照为 'fact-v1'（旧快照，拒绝）"
+          }
+        ],
+        "chosen": "v_a",
+        "fallback": false,
+        "fallback_reason": null,
+        "residual_where": {},
+        "reaggregation": {
+          "amount_sum": "CASE WHEN SUM(\"n_amount\") > 0 THEN SUM(\"s_amount\") END",
+          "amount_avg": "SUM(\"s_amount\") / SUM(\"n_amount\")（零分母 → NULL）"
+        },
+        "sql": "SELECT \"region\", CASE WHEN SUM(\"n_amount\") > 0 THEN SUM(\"s_amount\") END AS \"amount_sum\", SUM(\"s_amount\") AS \"amount_avg_num\", SUM(\"n_amount\") AS \"amount_avg_den\" FROM \"v_a\" GROUP BY \"region\"",
+        "params": []
+      },
+      "result": [
+        {
+          "region": null,
+          "amount_sum": null,
+          "amount_avg": null
+        },
+        {
+          "region": "N",
+          "amount_sum": 130,
+          "amount_avg": {
+            "num": 65,
+            "den": 2,
+            "decimal6": 32.5
+          }
+        },
+        {
+          "region": "S",
+          "amount_sum": 100,
+          "amount_avg": {
+            "num": 100,
+            "den": 1,
+            "decimal6": 100.0
+          }
+        }
+      ],
+      "tables_read": [
+        "v_a"
+      ],
+      "reconcile": {
+        "ok": true,
+        "diffs": [],
+        "direct_fact_tables": [
+          "fact"
+        ]
+      }
+    },
+    {
+      "query_id": "b_only",
+      "plan": {
+        "candidates": [
+          {
+            "name": "v_detail",
+            "usable": true,
+            "reason": "可用",
+            "row_count": 6
+          },
+          {
+            "name": "v_daily",
+            "usable": false,
+            "reason": "过滤维度 'product' 既未被候选谓词完全满足，也不在候选维度 ['day', 'region'] 中"
+          },
+          {
+            "name": "v_avg",
+            "usable": false,
+            "reason": "只有 avg_amount 而没有权重（amount_sum/amount_count），AVG 无法按 总SUM/总非NULLCOUNT 重算，拒绝"
+          },
+          {
+            "name": "v_a",
+            "usable": false,
+            "reason": "候选行域 product∈[\"A\"] 不覆盖查询所需 product∈[\"B\"]"
+          },
+          {
+            "name": "v_stale",
+            "usable": false,
+            "reason": "snapshot 不匹配：候选为 'fact-v0'，查询事实快照为 'fact-v1'（旧快照，拒绝）"
+          }
+        ],
+        "chosen": "v_detail",
+        "fallback": false,
+        "fallback_reason": null,
+        "residual_where": {
+          "product": [
+            "B"
+          ]
+        },
+        "reaggregation": {
+          "count": "COALESCE(SUM(\"n\"), 0)",
+          "amount_avg": "SUM(\"s_amount\") / SUM(\"n_amount\")（零分母 → NULL）"
+        },
+        "sql": "SELECT \"day\", COALESCE(SUM(\"n\"), 0) AS \"count\", SUM(\"s_amount\") AS \"amount_avg_num\", SUM(\"n_amount\") AS \"amount_avg_den\" FROM \"v_detail\" WHERE \"product\" IN (?) GROUP BY \"day\"",
+        "params": [
+          "B"
+        ]
+      },
+      "result": [
+        {
+          "day": "2026-01-01",
+          "count": 1,
+          "amount_avg": null
+        },
+        {
+          "day": "2026-01-02",
+          "count": 1,
+          "amount_avg": {
+            "num": 40,
+            "den": 1,
+            "decimal6": 40.0
+          }
+        }
+      ],
+      "tables_read": [
+        "v_detail"
+      ],
+      "reconcile": {
+        "ok": true,
+        "diffs": [],
+        "direct_fact_tables": [
+          "fact"
+        ]
+      }
+    },
+    {
+      "query_id": "day_filter",
+      "plan": {
+        "candidates": [
+          {
+            "name": "v_detail",
+            "usable": true,
+            "reason": "可用",
+            "row_count": 6
+          },
+          {
+            "name": "v_daily",
+            "usable": true,
+            "reason": "可用",
+            "row_count": 4
+          },
+          {
+            "name": "v_avg",
+            "usable": false,
+            "reason": "只有 avg_amount 而没有权重（amount_sum/amount_count），AVG 无法按 总SUM/总非NULLCOUNT 重算，拒绝"
+          },
+          {
+            "name": "v_a",
+            "usable": false,
+            "reason": "候选已按 product∈[\"A\"] 预过滤，而查询未限制该维度（需要全部取值），行域不覆盖"
+          },
+          {
+            "name": "v_stale",
+            "usable": false,
+            "reason": "snapshot 不匹配：候选为 'fact-v0'，查询事实快照为 'fact-v1'（旧快照，拒绝）"
+          }
+        ],
+        "chosen": "v_daily",
+        "fallback": false,
+        "fallback_reason": null,
+        "residual_where": {
+          "day": [
+            "2026-01-02"
+          ]
+        },
+        "reaggregation": {
+          "count": "COALESCE(SUM(\"n\"), 0)",
+          "amount_avg": "SUM(\"s_amount\") / SUM(\"n_amount\")（零分母 → NULL）"
+        },
+        "sql": "SELECT \"region\", COALESCE(SUM(\"n\"), 0) AS \"count\", SUM(\"s_amount\") AS \"amount_avg_num\", SUM(\"n_amount\") AS \"amount_avg_den\" FROM \"v_daily\" WHERE \"day\" IN (?) GROUP BY \"region\"",
+        "params": [
+          "2026-01-02"
+        ]
+      },
+      "result": [
+        {
+          "region": null,
+          "count": 1,
+          "amount_avg": null
+        },
+        {
+          "region": "N",
+          "count": 2,
+          "amount_avg": {
+            "num": 30,
+            "den": 1,
+            "decimal6": 30.0
+          }
+        }
+      ],
+      "tables_read": [
+        "v_daily"
+      ],
+      "reconcile": {
+        "ok": true,
+        "diffs": [],
+        "direct_fact_tables": [
+          "fact"
+        ]
+      }
+    },
+    {
+      "query_id": "global",
+      "plan": {
+        "candidates": [
+          {
+            "name": "v_detail",
+            "usable": true,
+            "reason": "可用",
+            "row_count": 6
+          },
+          {
+            "name": "v_daily",
+            "usable": true,
+            "reason": "可用",
+            "row_count": 4
+          },
+          {
+            "name": "v_avg",
+            "usable": false,
+            "reason": "只有 avg_amount 而没有权重（amount_sum/amount_count），AVG 无法按 总SUM/总非NULLCOUNT 重算，拒绝"
+          },
+          {
+            "name": "v_a",
+            "usable": false,
+            "reason": "候选已按 product∈[\"A\"] 预过滤，而查询未限制该维度（需要全部取值），行域不覆盖"
+          },
+          {
+            "name": "v_stale",
+            "usable": false,
+            "reason": "snapshot 不匹配：候选为 'fact-v0'，查询事实快照为 'fact-v1'（旧快照，拒绝）"
+          }
+        ],
+        "chosen": "v_daily",
+        "fallback": false,
+        "fallback_reason": null,
+        "residual_where": {
+          "region": [
+            "missing"
+          ]
+        },
+        "reaggregation": {
+          "count": "COALESCE(SUM(\"n\"), 0)",
+          "amount_sum": "CASE WHEN SUM(\"n_amount\") > 0 THEN SUM(\"s_amount\") END",
+          "amount_avg": "SUM(\"s_amount\") / SUM(\"n_amount\")（零分母 → NULL）"
+        },
+        "sql": "SELECT COALESCE(SUM(\"n\"), 0) AS \"count\", CASE WHEN SUM(\"n_amount\") > 0 THEN SUM(\"s_amount\") END AS \"amount_sum\", SUM(\"s_amount\") AS \"amount_avg_num\", SUM(\"n_amount\") AS \"amount_avg_den\" FROM \"v_daily\" WHERE \"region\" IN (?)",
+        "params": [
+          "missing"
+        ]
+      },
+      "result": [
+        {
+          "count": 0,
+          "amount_sum": null,
+          "amount_avg": null
+        }
+      ],
+      "tables_read": [
+        "v_daily"
+      ],
+      "reconcile": {
+        "ok": true,
+        "diffs": [],
+        "direct_fact_tables": [
+          "fact"
+        ]
+      }
+    },
+    {
+      "query_id": "extra_null_region",
+      "plan": {
+        "candidates": [
+          {
+            "name": "v_detail",
+            "usable": true,
+            "reason": "可用",
+            "row_count": 6
+          },
+          {
+            "name": "v_daily",
+            "usable": true,
+            "reason": "可用",
+            "row_count": 4
+          },
+          {
+            "name": "v_avg",
+            "usable": false,
+            "reason": "只有 avg_amount 而没有权重（amount_sum/amount_count），AVG 无法按 总SUM/总非NULLCOUNT 重算，拒绝"
+          },
+          {
+            "name": "v_a",
+            "usable": false,
+            "reason": "候选已按 product∈[\"A\"] 预过滤，而查询未限制该维度（需要全部取值），行域不覆盖"
+          },
+          {
+            "name": "v_stale",
+            "usable": false,
+            "reason": "snapshot 不匹配：候选为 'fact-v0'，查询事实快照为 'fact-v1'（旧快照，拒绝）"
+          }
+        ],
+        "chosen": "v_daily",
+        "fallback": false,
+        "fallback_reason": null,
+        "residual_where": {
+          "region": [
+            null
+          ]
+        },
+        "reaggregation": {
+          "count": "COALESCE(SUM(\"n\"), 0)",
+          "amount_sum": "CASE WHEN SUM(\"n_amount\") > 0 THEN SUM(\"s_amount\") END",
+          "amount_avg": "SUM(\"s_amount\") / SUM(\"n_amount\")（零分母 → NULL）"
+        },
+        "sql": "SELECT \"day\", COALESCE(SUM(\"n\"), 0) AS \"count\", CASE WHEN SUM(\"n_amount\") > 0 THEN SUM(\"s_amount\") END AS \"amount_sum\", SUM(\"s_amount\") AS \"amount_avg_num\", SUM(\"n_amount\") AS \"amount_avg_den\" FROM \"v_daily\" WHERE \"region\" IS NULL GROUP BY \"day\"",
+        "params": []
+      },
+      "result": [
+        {
+          "day": "2026-01-02",
+          "count": 1,
+          "amount_sum": null,
+          "amount_avg": null
+        }
+      ],
+      "tables_read": [
+        "v_daily"
+      ],
+      "reconcile": {
+        "ok": true,
+        "diffs": [],
+        "direct_fact_tables": [
+          "fact"
+        ]
+      }
+    }
+  ],
+  "verifications": [
+    {
+      "check": "region_avg: v_avg 被拒（avg-only 无权重）",
+      "ok": true,
+      "detail": "只有 avg_amount 而没有权重（amount_sum/amount_count），AVG 无法按 总SUM/总非NULLCOUNT 重算，拒绝"
+    },
+    {
+      "check": "region_avg: v_stale 被拒（旧 snapshot）",
+      "ok": true,
+      "detail": "snapshot 不匹配：候选为 'fact-v0'，查询事实快照为 'fact-v1'（旧快照，拒绝）"
+    },
+    {
+      "check": "a_only: v_avg 被拒（avg-only 无权重）",
+      "ok": true,
+      "detail": "只有 avg_amount 而没有权重（amount_sum/amount_count），AVG 无法按 总SUM/总非NULLCOUNT 重算，拒绝"
+    },
+    {
+      "check": "a_only: v_stale 被拒（旧 snapshot）",
+      "ok": true,
+      "detail": "snapshot 不匹配：候选为 'fact-v0'，查询事实快照为 'fact-v1'（旧快照，拒绝）"
+    },
+    {
+      "check": "b_only: v_avg 被拒（avg-only 无权重）",
+      "ok": true,
+      "detail": "只有 avg_amount 而没有权重（amount_sum/amount_count），AVG 无法按 总SUM/总非NULLCOUNT 重算，拒绝"
+    },
+    {
+      "check": "b_only: v_stale 被拒（旧 snapshot）",
+      "ok": true,
+      "detail": "snapshot 不匹配：候选为 'fact-v0'，查询事实快照为 'fact-v1'（旧快照，拒绝）"
+    },
+    {
+      "check": "day_filter: v_avg 被拒（avg-only 无权重）",
+      "ok": true,
+      "detail": "只有 avg_amount 而没有权重（amount_sum/amount_count），AVG 无法按 总SUM/总非NULLCOUNT 重算，拒绝"
+    },
+    {
+      "check": "day_filter: v_stale 被拒（旧 snapshot）",
+      "ok": true,
+      "detail": "snapshot 不匹配：候选为 'fact-v0'，查询事实快照为 'fact-v1'（旧快照，拒绝）"
+    },
+    {
+      "check": "global: v_avg 被拒（avg-only 无权重）",
+      "ok": true,
+      "detail": "只有 avg_amount 而没有权重（amount_sum/amount_count），AVG 无法按 总SUM/总非NULLCOUNT 重算，拒绝"
+    },
+    {
+      "check": "global: v_stale 被拒（旧 snapshot）",
+      "ok": true,
+      "detail": "snapshot 不匹配：候选为 'fact-v0'，查询事实快照为 'fact-v1'（旧快照，拒绝）"
+    },
+    {
+      "check": "extra_null_region: v_avg 被拒（avg-only 无权重）",
+      "ok": true,
+      "detail": "只有 avg_amount 而没有权重（amount_sum/amount_count），AVG 无法按 总SUM/总非NULLCOUNT 重算，拒绝"
+    },
+    {
+      "check": "extra_null_region: v_stale 被拒（旧 snapshot）",
+      "ok": true,
+      "detail": "snapshot 不匹配：候选为 'fact-v0'，查询事实快照为 'fact-v1'（旧快照，拒绝）"
+    },
+    {
+      "check": "region_avg: v_a 被拒（过滤域不覆盖）",
+      "ok": true,
+      "detail": "候选已按 product∈[\"A\"] 预过滤，而查询未限制该维度（需要全部取值），行域不覆盖"
+    },
+    {
+      "check": "b_only: v_a 被拒（过滤域不覆盖）",
+      "ok": true,
+      "detail": "候选行域 product∈[\"A\"] 不覆盖查询所需 product∈[\"B\"]"
+    },
+    {
+      "check": "day_filter: v_a 被拒（过滤域不覆盖）",
+      "ok": true,
+      "detail": "候选已按 product∈[\"A\"] 预过滤，而查询未限制该维度（需要全部取值），行域不覆盖"
+    },
+    {
+      "check": "global: v_a 被拒（过滤域不覆盖）",
+      "ok": true,
+      "detail": "候选已按 product∈[\"A\"] 预过滤，而查询未限制该维度（需要全部取值），行域不覆盖"
+    },
+    {
+      "check": "a_only: 选用 v_a 且残余过滤为空",
+      "ok": true,
+      "detail": "chosen=v_a residual={}"
+    },
+    {
+      "check": "region_avg: N 区 AVG 按有效行数加权 = 170/5",
+      "ok": true,
+      "detail": "avg=34/1=34.0，按组数平均错误值=33.3333"
+    },
+    {
+      "check": "region_avg: NULL region 独立成组，sum/avg 为 NULL",
+      "ok": true,
+      "detail": "{\"region\": null, \"count\": 1, \"amount_sum\": null, \"amount_avg\": null}"
+    },
+    {
+      "check": "global: 空结果输出一行 count=0、sum/avg=NULL",
+      "ok": true,
+      "detail": "[{\"count\": 0, \"amount_sum\": null, \"amount_avg\": null}]"
+    },
+    {
+      "check": "region_avg: 实际读取 v_daily（未读 fact）",
+      "ok": true,
+      "detail": "['v_daily']"
+    },
+    {
+      "check": "extra_null_region: 实际读取 v_daily（未读 fact）",
+      "ok": true,
+      "detail": "['v_daily']"
+    },
+    {
+      "check": "extra_null_region: NULL region 组 day=2026-01-02, count=1, sum/avg=NULL",
+      "ok": true,
+      "detail": "[{\"day\": \"2026-01-02\", \"count\": 1, \"amount_sum\": null, \"amount_avg\": null}]"
+    },
+    {
+      "check": "回退演示: 无可用候选时明确回退 fact 且结果与直算一致",
+      "ok": true,
+      "detail": "无可用候选（v_avg: 只有 avg_amount 而没有权重（amount_sum/amount_count），AVG 无法按 总SUM/总非NULLCOUNT 重算，拒绝; v_a: 候选行域 product∈[\"A\"] 不覆盖查询所需 product∈[\"B\"]; v_stale: snapshot 不匹配：候选为 'fact-v0'，查询事实快照为 'fact-v1'（旧快照，拒绝）），回退 fact 明细聚合"
+    },
+    {
+      "check": "全部查询与独立 fact 直算对账一致",
+      "ok": true,
+      "detail": "全部一致"
+    }
+  ],
+  "all_ok": true
+}
