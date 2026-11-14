@@ -1,0 +1,1 @@
+<tt xmlns="http://www.w3.org/ns/ttml" xmlns:ttp="http://www.w3.org/ns/ttml#parameter" ttp:tickRate="1000"><body dur="3s"><div><p xml:id="bad" begin="0.0001s" dur="1s" xml:space="preserve">not integral tick</p></div></body></tt>

@@ -1,3 +1,1 @@
-# SOLO 数据工程输入材料 231–260
-
-各题独立初始提交提供合成小输入或模拟服务，核心实现由独立会话完成。使用原生Python 3.11、Node.js 20或PostgreSQL 16。
+支持范围与精确时间语义见timing.md。正常输入含par与seq、相对begin、end、dur、父容器裁切、带独立时段span和同段文本节点动态合成。原p内xml:space=preserve且无布局换行。empty-clipped是合法但不可见的段，须保留裁切诊断。bad-time在给定tick率下不可精确表示，须拒绝。
