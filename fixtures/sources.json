@@ -1,0 +1,65 @@
+{
+  "left": {
+    "path": "fixtures/left.jsonl",
+    "schema": {
+      "id": "int",
+      "region": "text",
+      "tick": "int",
+      "amount": "int?"
+    },
+    "order": [
+      {
+        "field": "region",
+        "direction": "asc",
+        "nulls": "first"
+      },
+      {
+        "field": "tick",
+        "direction": "asc",
+        "nulls": "first"
+      }
+    ]
+  },
+  "right": {
+    "path": "fixtures/right.jsonl",
+    "schema": {
+      "id": "int",
+      "region": "text",
+      "tick": "int",
+      "amount": "int?"
+    },
+    "order": [
+      {
+        "field": "region",
+        "direction": "asc",
+        "nulls": "first"
+      },
+      {
+        "field": "tick",
+        "direction": "asc",
+        "nulls": "first"
+      }
+    ]
+  },
+  "overlap": {
+    "path": "fixtures/overlap.jsonl",
+    "schema": {
+      "id": "int",
+      "region": "text",
+      "tick": "int",
+      "amount": "int?"
+    },
+    "order": [
+      {
+        "field": "region",
+        "direction": "asc",
+        "nulls": "first"
+      },
+      {
+        "field": "tick",
+        "direction": "asc",
+        "nulls": "first"
+      }
+    ]
+  }
+}

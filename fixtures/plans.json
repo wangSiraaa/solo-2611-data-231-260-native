@@ -1,0 +1,148 @@
+[
+  {
+    "id": "already_grouped",
+    "nodes": [
+      {
+        "id": "l",
+        "op": "source",
+        "source": "left"
+      },
+      {
+        "id": "r",
+        "op": "source",
+        "source": "right"
+      },
+      {
+        "id": "u",
+        "op": "concat",
+        "inputs": [
+          "l",
+          "r"
+        ]
+      },
+      {
+        "id": "g",
+        "op": "stream_group",
+        "input": "u",
+        "keys": [
+          "region"
+        ],
+        "sum": "amount"
+      }
+    ],
+    "output": "g"
+  },
+  {
+    "id": "crossing",
+    "nodes": [
+      {
+        "id": "l",
+        "op": "source",
+        "source": "left"
+      },
+      {
+        "id": "r",
+        "op": "source",
+        "source": "overlap"
+      },
+      {
+        "id": "u",
+        "op": "concat",
+        "inputs": [
+          "l",
+          "r"
+        ]
+      },
+      {
+        "id": "g",
+        "op": "stream_group",
+        "input": "u",
+        "keys": [
+          "region",
+          "tick"
+        ],
+        "sum": "amount"
+      }
+    ],
+    "output": "g"
+  },
+  {
+    "id": "drop_leading",
+    "nodes": [
+      {
+        "id": "l",
+        "op": "source",
+        "source": "left"
+      },
+      {
+        "id": "r",
+        "op": "source",
+        "source": "right"
+      },
+      {
+        "id": "u",
+        "op": "concat",
+        "inputs": [
+          "l",
+          "r"
+        ]
+      },
+      {
+        "id": "p",
+        "op": "project",
+        "input": "u",
+        "mapping": {
+          "t": "tick",
+          "amount": "amount"
+        }
+      },
+      {
+        "id": "g",
+        "op": "stream_group",
+        "input": "p",
+        "keys": [
+          "t"
+        ],
+        "sum": "amount"
+      }
+    ],
+    "output": "g"
+  },
+  {
+    "id": "rename",
+    "nodes": [
+      {
+        "id": "l",
+        "op": "source",
+        "source": "left"
+      },
+      {
+        "id": "p",
+        "op": "project",
+        "input": "l",
+        "mapping": {
+          "area": "region",
+          "time": "tick",
+          "amount": "amount"
+        }
+      },
+      {
+        "id": "f",
+        "op": "filter",
+        "input": "p",
+        "field": "amount",
+        "ge": 15
+      },
+      {
+        "id": "g",
+        "op": "stream_group",
+        "input": "f",
+        "keys": [
+          "area"
+        ],
+        "sum": "amount"
+      }
+    ],
+    "output": "g"
+  }
+]
