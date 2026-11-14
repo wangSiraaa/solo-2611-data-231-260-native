@@ -1,0 +1,7 @@
+{"id": "q1", "entity": "c1", "valid_at": 4, "known_at": 1}
+{"id": "q2", "entity": "c1", "valid_at": 4, "known_at": 2}
+{"id": "q3", "entity": "c1", "valid_at": 7, "known_at": 3}
+{"id": "q4", "entity": "c1", "valid_at": 7, "known_at": 4}
+{"id": "q5", "entity": "c1", "valid_at": 10, "known_at": 4}
+{"id": "q6", "entity": "c1", "valid_at": 10, "known_at": 5}
+{"id": "q7", "entity": "c2", "valid_at": 0, "known_at": 6}

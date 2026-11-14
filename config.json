@@ -1,0 +1,6 @@
+{
+  "time_domain": "integer",
+  "interval": "[from,to)",
+  "null_to": "positive infinity",
+  "knowledge_order": "strictly increasing"
+}
