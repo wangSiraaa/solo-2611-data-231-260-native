@@ -1,0 +1,15 @@
+{
+  "text_normalization": "none",
+  "offset_range": "half-open",
+  "layers": "independent; overlap among otherwise representable annotations rejects all involved",
+  "gaps": "only Unicode whitespace between covered tokens allowed within accepted entity",
+  "label_format": [
+    "O",
+    "B-label",
+    "I-label",
+    "L-label",
+    "U-label"
+  ],
+  "tokens": "ordered nonoverlapping raw byte offsets; pieces may be invalid standalone UTF8; special offset null",
+  "internal_special": "if a special token occurs between first and last covered actual token, annotation is unrepresentable; all special tokens remain O"
+}

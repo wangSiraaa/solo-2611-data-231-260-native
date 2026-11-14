@@ -1,0 +1,60 @@
+{
+  "document_id": "d1",
+  "sha256": "d410846027bb88c662f20587d41e11e4943b4aaa2bbe4b5e19dcaa95f67c19d5",
+  "tokens": [
+    {
+      "token_id": 1,
+      "start": null,
+      "end": null,
+      "piece_base64": null
+    },
+    {
+      "token_id": 10,
+      "start": 0,
+      "end": 1,
+      "piece_base64": "QQ=="
+    },
+    {
+      "token_id": 11,
+      "start": 1,
+      "end": 3,
+      "piece_base64": "8J8="
+    },
+    {
+      "token_id": 999,
+      "start": null,
+      "end": null,
+      "piece_base64": null
+    },
+    {
+      "token_id": 12,
+      "start": 3,
+      "end": 5,
+      "piece_base64": "mIA="
+    },
+    {
+      "token_id": 13,
+      "start": 6,
+      "end": 11,
+      "piece_base64": "Y2Fmw6k="
+    },
+    {
+      "token_id": 14,
+      "start": 12,
+      "end": 15,
+      "piece_base64": "ZcyB"
+    },
+    {
+      "token_id": 15,
+      "start": 16,
+      "end": 19,
+      "piece_base64": "5Lit"
+    },
+    {
+      "token_id": 16,
+      "start": 19,
+      "end": 22,
+      "piece_base64": "5paH"
+    }
+  ]
+}

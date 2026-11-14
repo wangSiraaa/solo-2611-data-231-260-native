@@ -1,0 +1,82 @@
+[
+  {
+    "annotation_id": "emoji-cp",
+    "layer": "cp",
+    "label": "ICON",
+    "unit": "codepoint",
+    "start": 1,
+    "end": 2,
+    "document_id": "d1",
+    "sha256": "d410846027bb88c662f20587d41e11e4943b4aaa2bbe4b5e19dcaa95f67c19d5"
+  },
+  {
+    "annotation_id": "emoji-u16",
+    "layer": "u16",
+    "label": "ICON",
+    "unit": "utf16",
+    "start": 1,
+    "end": 3,
+    "document_id": "d1",
+    "sha256": "d410846027bb88c662f20587d41e11e4943b4aaa2bbe4b5e19dcaa95f67c19d5"
+  },
+  {
+    "annotation_id": "emoji-byte",
+    "layer": "byte",
+    "label": "ICON",
+    "unit": "utf8",
+    "start": 1,
+    "end": 5,
+    "document_id": "d1",
+    "sha256": "d410846027bb88c662f20587d41e11e4943b4aaa2bbe4b5e19dcaa95f67c19d5"
+  },
+  {
+    "annotation_id": "cafe",
+    "layer": "main",
+    "label": "NAME",
+    "unit": "codepoint",
+    "start": 3,
+    "end": 7,
+    "document_id": "d1",
+    "sha256": "d410846027bb88c662f20587d41e11e4943b4aaa2bbe4b5e19dcaa95f67c19d5"
+  },
+  {
+    "annotation_id": "partial-token",
+    "layer": "main",
+    "label": "ACCENT",
+    "unit": "codepoint",
+    "start": 6,
+    "end": 7,
+    "document_id": "d1",
+    "sha256": "d410846027bb88c662f20587d41e11e4943b4aaa2bbe4b5e19dcaa95f67c19d5"
+  },
+  {
+    "annotation_id": "bad-surrogate",
+    "layer": "bad",
+    "label": "BAD",
+    "unit": "utf16",
+    "start": 2,
+    "end": 3,
+    "document_id": "d1",
+    "sha256": "d410846027bb88c662f20587d41e11e4943b4aaa2bbe4b5e19dcaa95f67c19d5"
+  },
+  {
+    "annotation_id": "nested1",
+    "layer": "conflict",
+    "label": "WORDS",
+    "unit": "codepoint",
+    "start": 3,
+    "end": 10,
+    "document_id": "d1",
+    "sha256": "d410846027bb88c662f20587d41e11e4943b4aaa2bbe4b5e19dcaa95f67c19d5"
+  },
+  {
+    "annotation_id": "nested2",
+    "layer": "conflict",
+    "label": "NAME",
+    "unit": "codepoint",
+    "start": 3,
+    "end": 7,
+    "document_id": "d1",
+    "sha256": "d410846027bb88c662f20587d41e11e4943b4aaa2bbe4b5e19dcaa95f67c19d5"
+  }
+]
