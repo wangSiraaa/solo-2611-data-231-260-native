@@ -1,0 +1,14 @@
+{"partition": "p1", "seq": 1, "event_id": "e1", "kind": "start", "value": 0, "type": "row"}
+{"partition": "p2", "seq": 1, "event_id": "f1", "kind": "start", "value": 0, "type": "row"}
+{"partition": "p1", "seq": 2, "event_id": "e2", "kind": "step", "value": 3, "type": "row"}
+{"partition": "p2", "seq": 2, "event_id": "f2", "kind": "step", "value": 2, "type": "row"}
+{"partition": "p1", "seq": 3, "event_id": "e3", "kind": "step", "value": 8, "type": "row"}
+{"partition": "p2", "seq": 3, "event_id": "f3", "kind": "start", "value": 5, "type": "row"}
+{"partition": "p1", "seq": 4, "event_id": "e4", "kind": "end", "value": 9, "type": "row"}
+{"partition": "p2", "seq": 4, "event_id": "f4", "kind": "end", "value": 8, "type": "row"}
+{"partition": "p1", "seq": 5, "event_id": "e5", "kind": "start", "value": 1, "type": "row"}
+{"partition": "p2", "seq": 5, "event_id": "f5", "kind": "end", "value": 9, "type": "row"}
+{"partition": "p1", "seq": 6, "event_id": "e6", "kind": "end", "value": 7, "type": "row"}
+{"type": "end", "partition": "p2"}
+{"partition": "p1", "seq": 7, "event_id": "e7", "kind": "end", "value": 8, "type": "row"}
+{"type": "end", "partition": "p1"}
