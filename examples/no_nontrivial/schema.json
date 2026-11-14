@@ -1,0 +1,8 @@
+{
+  "relation": "misc_wide",
+  "attributes": ["code", "label", "note"],
+  "csv": "data.csv",
+  "dependencies": [
+    {"lhs": ["code"], "rhs": ["code"]}
+  ]
+}

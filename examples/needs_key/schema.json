@@ -1,0 +1,8 @@
+{
+  "relation": "abc_wide",
+  "attributes": ["a", "b", "c"],
+  "csv": "data.csv",
+  "dependencies": [
+    {"lhs": ["a"], "rhs": ["b"]}
+  ]
+}
