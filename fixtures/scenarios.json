@@ -1,0 +1,33 @@
+[
+  {
+    "id": "lag_and_clients",
+    "steps": [
+      "init",
+      "commit amount=25",
+      "commit amount=7",
+      "A observe commit2",
+      "A read wait=100 fallback=primary",
+      "B read wait=100 fallback=none",
+      "replicate",
+      "A read wait=100 fallback=none"
+    ]
+  },
+  {
+    "id": "snapshot",
+    "steps": [
+      "replicate",
+      "A start read and finish meta+accounts query",
+      "commit amount=3",
+      "replicate",
+      "A finish history query in same transaction"
+    ]
+  },
+  {
+    "id": "generation",
+    "steps": [
+      "A chooses replica path before BEGIN",
+      "reset-node replica generation=2",
+      "A begins and validates metadata in actual snapshot"
+    ]
+  }
+]

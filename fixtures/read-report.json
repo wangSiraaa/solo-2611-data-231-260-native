@@ -1,0 +1,6 @@
+{
+  "accounts_query": "SELECT id,balance FROM accounts ORDER BY id",
+  "history_query": "SELECT MAX(seq) AS max_seq,COUNT(*) AS n FROM history",
+  "empty_history_max_seq": null,
+  "invariant": "sum(accounts.balance)=1000; max_seq equals applied_seq unless applied_seq=0 then NULL"
+}
