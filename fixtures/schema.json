@@ -1,0 +1,20 @@
+[
+  {
+    "name": "tenant",
+    "type": "text",
+    "order": "asc",
+    "nulls": "first"
+  },
+  {
+    "name": "score",
+    "type": "int64",
+    "order": "desc",
+    "nulls": "last"
+  },
+  {
+    "name": "tag",
+    "type": "bytes",
+    "order": "asc",
+    "nulls": "first"
+  }
+]

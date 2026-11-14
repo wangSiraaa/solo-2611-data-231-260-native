@@ -1,0 +1,26 @@
+[
+  {
+    "id": "tenant_A",
+    "equals_prefix": [
+      "A"
+    ]
+  },
+  {
+    "id": "tenant_A_score5",
+    "equals_prefix": [
+      "A",
+      5
+    ]
+  },
+  {
+    "id": "text_starts_A",
+    "equals_prefix": [],
+    "starts_with": "A"
+  },
+  {
+    "id": "null_tenant",
+    "equals_prefix": [
+      null
+    ]
+  }
+]

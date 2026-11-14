@@ -1,0 +1,8 @@
+{"row_id": "r1", "tenant": null, "score": 2, "tag": null}
+{"row_id": "r2", "tenant": "A", "score": null, "tag": {"hex": ""}}
+{"row_id": "r3", "tenant": "A", "score": 5, "tag": {"hex": "00"}}
+{"row_id": "r4", "tenant": "A", "score": 5, "tag": {"hex": "0001"}}
+{"row_id": "r5", "tenant": "A\u0000B", "score": -9223372036854775808, "tag": {"hex": "ff"}}
+{"row_id": "r6", "tenant": "AA", "score": 9223372036854775807, "tag": {"hex": "00ff"}}
+{"row_id": "r7", "tenant": "中", "score": 0, "tag": {"hex": ""}}
+{"row_id": "r8", "tenant": "A", "score": 5, "tag": {"hex": "00"}}
