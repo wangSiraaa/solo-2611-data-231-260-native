@@ -1,0 +1,19 @@
+{
+  "value_elements": {
+    "meta": "content",
+    "a": "href URL",
+    "link": "href URL",
+    "img": "src URL",
+    "time": "datetime else text",
+    "data": "value",
+    "span": "text",
+    "div": "text",
+    "p": "text"
+  },
+  "text": "join descendant text nodes in tree order, collapse HTML whitespace runs, trim outer HTML whitespace",
+  "itemref": "whitespace-separated same-document element IDs; only itemscope node itemref is interpreted",
+  "walk": "starting descendants plus referenced nodes, visit DOM node once per item; nested itemscope creates entity boundary and must not traverse inside as outer properties",
+  "anonymous_identity": "document_id plus stable source DOM path; no graph canonicalization",
+  "IRI": "resolve against first usable base href then source page URL",
+  "bad_references": "preserve known properties, entity incomplete and structured diagnostic"
+}
