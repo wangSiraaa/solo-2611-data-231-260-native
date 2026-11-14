@@ -1,0 +1,42 @@
+{
+  "type": "struct",
+  "optional": false,
+  "fields": {
+    "id": {
+      "type": "int",
+      "optional": false
+    },
+    "meta": {
+      "type": "struct",
+      "optional": true,
+      "fields": {
+        "name": {
+          "type": "string",
+          "optional": true
+        }
+      }
+    },
+    "batches": {
+      "type": "list",
+      "optional": true,
+      "element": {
+        "type": "struct",
+        "optional": true,
+        "fields": {
+          "code": {
+            "type": "string",
+            "optional": false
+          },
+          "values": {
+            "type": "list",
+            "optional": true,
+            "element": {
+              "type": "int",
+              "optional": true
+            }
+          }
+        }
+      }
+    }
+  }
+}

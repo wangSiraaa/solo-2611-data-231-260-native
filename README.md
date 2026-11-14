@@ -1,3 +1,1 @@
-# SOLO 数据工程输入材料 231–260
-
-各题独立初始提交提供合成小输入或模拟服务，核心实现由独立会话完成。使用原生Python 3.11、Node.js 20或PostgreSQL 16。
+schema为根required struct，叶int/string，optional可为空，list有一个repeated element层。字段缺失与显式null规范为同一null；空struct、空list保留区别。rows覆盖空父、空数组、空元素、同一数组内不同子数组长度。invalid-row在required code上放null，须拒绝。编码输出是自定JSON叶列流，不是Parquet二进制。

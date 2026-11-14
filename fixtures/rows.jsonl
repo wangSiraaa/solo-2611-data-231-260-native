@@ -1,0 +1,6 @@
+{"id": 1, "meta": null, "batches": null}
+{"id": 2, "meta": {}, "batches": []}
+{"id": 3, "meta": {"name": ""}, "batches": [null]}
+{"id": 4, "meta": {"name": "x"}, "batches": [{"code": "a", "values": null}, {"code": "b", "values": []}]}
+{"id": 5, "batches": [{"code": "c", "values": [null, 7]}, {"code": "d", "values": [8, null, 9]}]}
+{"id": 6, "meta": {"name": null}, "batches": [{"code": "e", "values": [0]}]}
