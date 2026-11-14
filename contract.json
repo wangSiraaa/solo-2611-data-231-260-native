@@ -1,0 +1,24 @@
+{
+  "protocol": 1,
+  "framing": "uint32 big endian length followed by one pgoutput message",
+  "tables": [
+    {
+      "namespace": "public",
+      "name": "records",
+      "primary_key": [
+        "id"
+      ]
+    }
+  ],
+  "supported_type_oids": {
+    "23": "int4",
+    "25": "text"
+  },
+  "relation_changes": "only append nullable columns, default NULL",
+  "value_markers": [
+    "n",
+    "u",
+    "t"
+  ],
+  "transaction_streaming": false
+}

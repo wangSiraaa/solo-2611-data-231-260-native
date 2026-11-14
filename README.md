@@ -1,3 +1,1 @@
-# SOLO 数据工程输入材料 231–260
-
-各题独立初始提交提供合成小输入或模拟服务，核心实现由独立会话完成。使用原生Python 3.11、Node.js 20或PostgreSQL 16。
+changes.bin来自隔离PostgreSQL16.16的pgoutput逻辑解码，proto_version=1。每条消息外包4字节大端长度（不含长度自身），包内是完整pgoutput消息原字节；这层长度只为离线存储，不是复制wire envelope。source.sql是构造来源的SQL材料，不是解码答案。输入从空表起，四次事务提交，包含4096字节TOAST文本、只改qty、改主键、增加nullable note列及删除。unknown-relation把第一条I的relid改成未知值；truncated删掉尾部3字节。核心读取无需启动数据库。
