@@ -1,3 +1,1 @@
-# SOLO 数据工程输入材料 231–260
-
-各题独立初始提交提供合成小输入或模拟服务，核心实现由独立会话完成。使用原生Python 3.11、Node.js 20或PostgreSQL 16。
+source.csv有UTF8 BOM、表头可选引号、混合CRLF/LF记录终止符、字段内CRLF、转义引号、中文、空字段及末行无终止符。patch的row从表头后的第一逻辑记录起0基，column为0基物理列序；expected为解码后精确字符串，不做换行归一化。两个坏patch分别旧值错误和同cell重复，malformed用于词法拒绝。原件必须只读，输出另一文件。

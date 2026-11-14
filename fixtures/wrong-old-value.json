@@ -1,0 +1,29 @@
+{
+  "source_sha256": "3e98f5bf76fd5206d69e713c207934bfe0c75c1e4cf1c884fcb831a3a0859fc4",
+  "changes": [
+    {
+      "row": 0,
+      "column": 1,
+      "expected": "not Alice",
+      "value": "A, B"
+    },
+    {
+      "row": 0,
+      "column": 2,
+      "expected": "first\r\nsecond",
+      "value": "new\nline"
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "expected": "Bob",
+      "value": "B\"ob"
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "expected": "",
+      "value": "tail"
+    }
+  ]
+}
