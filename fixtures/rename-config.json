@@ -1,0 +1,9 @@
+{
+  "active_name": "active.log",
+  "read_chunk_bytes": 7,
+  "poll_seconds": 0.03,
+  "max_line_bytes": 4096,
+  "prefix_check_bytes": 64,
+  "scope": "Only observe log files; writer truth outside directory is independent QA data.",
+  "rotation_mode": "rename"
+}

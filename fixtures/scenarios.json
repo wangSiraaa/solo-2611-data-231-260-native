@@ -1,0 +1,18 @@
+{
+  "rename": [
+    "old alpha",
+    "old 中文 tail",
+    "new alpha",
+    "old late append",
+    "new beta"
+  ],
+  "partial": [
+    "prefix 中文 suffix"
+  ],
+  "copytruncate": [
+    "generation one 000000000000000000000000000000000000000000000000000000000000",
+    "generation one second long record",
+    "generation two first",
+    "generation two second"
+  ]
+}
