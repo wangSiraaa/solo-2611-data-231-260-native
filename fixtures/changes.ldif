@@ -1,0 +1,53 @@
+# record 1: reject all modifications, including the first successful-looking add.
+dn: cn=Doe\, Jane+uid=jane,ou=People,dc=example,dc=test
+changetype: modify
+add: description
+description: temporary
+-
+delete: uid
+uid: missing-value
+-
+
+# record 2: UTF-8 base64 replacement.
+dn: cn=Doe\, Jane+uid=jane,ou=People,dc=example,dc=test
+changetype: modify
+replace: description
+description:: 5bey56Gu6K6k
+-
+
+# record 3: move person and Badge child; member is intentionally not rewritten.
+dn: cn=Doe\, Jane+uid=jane,ou=People,dc=example,dc=test
+changetype: modrdn
+newrdn: cn=Jane\+D+uid=jane
+deleteoldrdn: 1
+newsuperior: ou=Archive,dc=example,dc=test
+
+# record 4: reject non-leaf delete.
+dn: cn=Jane\+D+uid=jane,ou=Archive,dc=example,dc=test
+changetype: delete
+
+# record 5: explicit reference repair, using reverse AVA order to test equality.
+dn: cn=Team,dc=example,dc=test
+changetype: modify
+replace: member
+member: uid=jane+cn=Jane\+D,ou=Archive,dc=example,dc=test
+-
+
+# record 6: child removal after the subtree move.
+dn: cn=Badge,cn=Jane\+D+uid=jane,ou=Archive,dc=example,dc=test
+changetype: delete
+
+# record 7: add an entry, with a base64-encoded DN.
+dn:: Y2495p2O6Zu3LG91PVBlb3BsZSxkYz1leGFtcGxlLGRjPXRlc3Q=
+changetype: add
+entryUUID: li-001
+objectClass: person
+cn:: 5p2O6Zu3
+uid: lilei
+
+# record 8: reject moving a branch under its own descendant.
+dn: ou=People,dc=example,dc=test
+changetype: modrdn
+newrdn: ou=Moved
+deleteoldrdn: 1
+newsuperior: cn=李雷,ou=People,dc=example,dc=test

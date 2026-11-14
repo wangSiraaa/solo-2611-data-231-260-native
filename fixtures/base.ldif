@@ -1,0 +1,36 @@
+version: 1
+
+dn: dc=example,dc=test
+entryUUID: root-001
+objectClass: domain
+dc: example
+
+dn: ou=People,dc=example,dc=test
+entryUUID: people-001
+objectClass: organizationalUnit
+ou: People
+
+dn: ou=Archive,dc=example,dc=test
+entryUUID: archive-001
+objectClass: organizationalUnit
+ou: Archive
+
+dn: cn=Doe\, Jane+uid=jane,ou=People,dc=example,dc=test
+entryUUID: jane-001
+objectClass: person
+cn: Doe, Jane
+uid: jane
+description:: 5YWl6IGM6LWE5paZ
+
+dn: cn=Badge,cn=Doe\, Jane+uid=jane,ou=People,dc=example,dc=test
+entryUUID: badge-001
+objectClass: person
+cn: Badge
+
+dn: cn=Team,dc=example,dc=test
+entryUUID: team-001
+objectClass: group
+cn: Team
+member: cn=Doe\, Jane+uid=jane,ou=People,dc=example,dc=test
+description: This line is deliberately
+ folded once.

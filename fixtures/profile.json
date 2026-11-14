@@ -1,0 +1,21 @@
+{
+  "root_dn": "dc=example,dc=test",
+  "dn_attribute_types": [
+    "cn",
+    "ou",
+    "dc",
+    "uid"
+  ],
+  "dn_value_matching": "exact Unicode string, case sensitive, no normalization",
+  "attribute_types": [
+    "entryuuid",
+    "objectclass",
+    "cn",
+    "ou",
+    "dc",
+    "uid",
+    "description",
+    "member"
+  ],
+  "member_matching": "DN parsed equivalence, never automatic rewrite"
+}
