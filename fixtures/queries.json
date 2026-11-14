@@ -1,0 +1,29 @@
+[
+  {
+    "id": "top2",
+    "k": 2,
+    "weights": {
+      "x": 3,
+      "y": 1
+    },
+    "page_size": 2
+  },
+  {
+    "id": "top3",
+    "k": 3,
+    "weights": {
+      "x": 1,
+      "y": 1
+    },
+    "page_size": 1
+  },
+  {
+    "id": "all",
+    "k": 20,
+    "weights": {
+      "x": 1,
+      "y": 2
+    },
+    "page_size": 3
+  }
+]

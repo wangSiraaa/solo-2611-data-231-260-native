@@ -1,0 +1,1 @@
+启动python3 index_server.py --rows fixtures/rows.json --ready /tmp/index-ready.json。GET /info取得snapshot与总对象数。POST /scan接受snapshot,column,cursor(初始0),limit(1..3)，按单列score降序/id字节序分页，仅返回该列得分与next/exhausted。POST /lookup接受同snapshot及至多4个id，返回该对象两列分数。GET /__inspect只作验收，不能用于正常取数；输入rows.json也是服务端材料，客户端不得绕过接口读它。--change-after N在N次成功数据访问后切换snapshot并拒绝旧请求，供失效测试。所有id在两个索引都各出现一次，分数是非负整数，固定快照下不变。
