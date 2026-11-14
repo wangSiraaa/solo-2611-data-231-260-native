@@ -1,0 +1,54 @@
+{
+  "image_id": "image1",
+  "original": "original.png",
+  "width": 10,
+  "height": 8,
+  "tiles": [
+    {
+      "tile_id": "a",
+      "crop": [
+        0,
+        0,
+        6,
+        6
+      ],
+      "scale": 2,
+      "horizontal_flip": true,
+      "image": "a-image.png",
+      "mask": "a-mask.png",
+      "valid": "a-valid.png",
+      "instance_map": {
+        "1": "obj-A",
+        "2": "obj-B"
+      }
+    },
+    {
+      "tile_id": "b",
+      "crop": [
+        4,
+        2,
+        6,
+        6
+      ],
+      "scale": 1,
+      "horizontal_flip": false,
+      "image": "b-image.png",
+      "mask": "b-mask.png",
+      "valid": "b-valid.png",
+      "instance_map": {
+        "7": "obj-A",
+        "8": "obj-B"
+      }
+    }
+  ],
+  "instances": [
+    {
+      "id": "obj-A",
+      "category_id": 1
+    },
+    {
+      "id": "obj-B",
+      "category_id": 2
+    }
+  ]
+}

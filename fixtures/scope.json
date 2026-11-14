@@ -1,0 +1,16 @@
+{
+  "transform_order": [
+    "crop",
+    "integer nearest upscale",
+    "horizontal flip"
+  ],
+  "state_codes": {
+    "unknown": 0,
+    "certain_background": 1,
+    "certain_instance": 2,
+    "conflict": 3
+  },
+  "conflict": "two or more distinct observed global identities, including background, for a source pixel; invalid pixels contribute nothing",
+  "RLE": "COCO uncompressed counts in column-major traversal, first run counts zeros; empty instance bbox=null",
+  "categories": "only given instance mapping; never infer"
+}
