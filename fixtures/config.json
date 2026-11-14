@@ -1,0 +1,12 @@
+{
+  "t_range": [
+    0,
+    16
+  ],
+  "bucket_range": [
+    0,
+    16
+  ],
+  "cap": 4,
+  "expires_after_searches_for_expired": 3
+}

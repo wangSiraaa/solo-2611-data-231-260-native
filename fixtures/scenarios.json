@@ -1,0 +1,670 @@
+{
+  "normal": [
+    {
+      "record_id": "r00",
+      "t": 0,
+      "bucket": 0,
+      "payload": "本地目录0"
+    },
+    {
+      "record_id": "r01",
+      "t": 0,
+      "bucket": 1,
+      "payload": "本地目录1"
+    },
+    {
+      "record_id": "r02",
+      "t": 0,
+      "bucket": 2,
+      "payload": "本地目录2"
+    },
+    {
+      "record_id": "r03",
+      "t": 0,
+      "bucket": 3,
+      "payload": "本地目录3"
+    },
+    {
+      "record_id": "r04",
+      "t": 1,
+      "bucket": 0,
+      "payload": "本地目录4"
+    },
+    {
+      "record_id": "r05",
+      "t": 1,
+      "bucket": 1,
+      "payload": "本地目录5"
+    },
+    {
+      "record_id": "r06",
+      "t": 1,
+      "bucket": 2,
+      "payload": "本地目录6"
+    },
+    {
+      "record_id": "r07",
+      "t": 1,
+      "bucket": 3,
+      "payload": "本地目录7"
+    },
+    {
+      "record_id": "r08",
+      "t": 2,
+      "bucket": 0,
+      "payload": "本地目录8"
+    },
+    {
+      "record_id": "r09",
+      "t": 2,
+      "bucket": 1,
+      "payload": "本地目录9"
+    },
+    {
+      "record_id": "r10",
+      "t": 2,
+      "bucket": 2,
+      "payload": "本地目录10"
+    },
+    {
+      "record_id": "r11",
+      "t": 2,
+      "bucket": 3,
+      "payload": "本地目录11"
+    },
+    {
+      "record_id": "r12",
+      "t": 3,
+      "bucket": 0,
+      "payload": "本地目录12"
+    },
+    {
+      "record_id": "r13",
+      "t": 3,
+      "bucket": 1,
+      "payload": "本地目录13"
+    },
+    {
+      "record_id": "r14",
+      "t": 3,
+      "bucket": 2,
+      "payload": "本地目录14"
+    },
+    {
+      "record_id": "r15",
+      "t": 3,
+      "bucket": 3,
+      "payload": "本地目录15"
+    },
+    {
+      "record_id": "r16",
+      "t": 4,
+      "bucket": 0,
+      "payload": "本地目录16"
+    },
+    {
+      "record_id": "r17",
+      "t": 4,
+      "bucket": 1,
+      "payload": "本地目录17"
+    },
+    {
+      "record_id": "r18",
+      "t": 4,
+      "bucket": 2,
+      "payload": "本地目录18"
+    },
+    {
+      "record_id": "r19",
+      "t": 4,
+      "bucket": 3,
+      "payload": "本地目录19"
+    }
+  ],
+  "hotspot": [
+    {
+      "record_id": "r00",
+      "t": 0,
+      "bucket": 0,
+      "payload": "本地目录0"
+    },
+    {
+      "record_id": "r01",
+      "t": 0,
+      "bucket": 1,
+      "payload": "本地目录1"
+    },
+    {
+      "record_id": "r02",
+      "t": 0,
+      "bucket": 2,
+      "payload": "本地目录2"
+    },
+    {
+      "record_id": "r03",
+      "t": 0,
+      "bucket": 3,
+      "payload": "本地目录3"
+    },
+    {
+      "record_id": "r04",
+      "t": 1,
+      "bucket": 0,
+      "payload": "本地目录4"
+    },
+    {
+      "record_id": "r05",
+      "t": 1,
+      "bucket": 1,
+      "payload": "本地目录5"
+    },
+    {
+      "record_id": "r06",
+      "t": 1,
+      "bucket": 2,
+      "payload": "本地目录6"
+    },
+    {
+      "record_id": "r07",
+      "t": 1,
+      "bucket": 3,
+      "payload": "本地目录7"
+    },
+    {
+      "record_id": "r08",
+      "t": 2,
+      "bucket": 0,
+      "payload": "本地目录8"
+    },
+    {
+      "record_id": "r09",
+      "t": 2,
+      "bucket": 1,
+      "payload": "本地目录9"
+    },
+    {
+      "record_id": "r10",
+      "t": 2,
+      "bucket": 2,
+      "payload": "本地目录10"
+    },
+    {
+      "record_id": "r11",
+      "t": 2,
+      "bucket": 3,
+      "payload": "本地目录11"
+    },
+    {
+      "record_id": "r12",
+      "t": 3,
+      "bucket": 0,
+      "payload": "本地目录12"
+    },
+    {
+      "record_id": "r13",
+      "t": 3,
+      "bucket": 1,
+      "payload": "本地目录13"
+    },
+    {
+      "record_id": "r14",
+      "t": 3,
+      "bucket": 2,
+      "payload": "本地目录14"
+    },
+    {
+      "record_id": "r15",
+      "t": 3,
+      "bucket": 3,
+      "payload": "本地目录15"
+    },
+    {
+      "record_id": "r16",
+      "t": 4,
+      "bucket": 0,
+      "payload": "本地目录16"
+    },
+    {
+      "record_id": "r17",
+      "t": 4,
+      "bucket": 1,
+      "payload": "本地目录17"
+    },
+    {
+      "record_id": "r18",
+      "t": 4,
+      "bucket": 2,
+      "payload": "本地目录18"
+    },
+    {
+      "record_id": "r19",
+      "t": 4,
+      "bucket": 3,
+      "payload": "本地目录19"
+    },
+    {
+      "record_id": "h00",
+      "t": 7,
+      "bucket": 0,
+      "payload": "热点0"
+    },
+    {
+      "record_id": "h01",
+      "t": 7,
+      "bucket": 1,
+      "payload": "热点1"
+    },
+    {
+      "record_id": "h02",
+      "t": 7,
+      "bucket": 2,
+      "payload": "热点2"
+    },
+    {
+      "record_id": "h03",
+      "t": 7,
+      "bucket": 3,
+      "payload": "热点3"
+    },
+    {
+      "record_id": "h04",
+      "t": 7,
+      "bucket": 4,
+      "payload": "热点4"
+    },
+    {
+      "record_id": "h05",
+      "t": 7,
+      "bucket": 5,
+      "payload": "热点5"
+    },
+    {
+      "record_id": "h06",
+      "t": 7,
+      "bucket": 6,
+      "payload": "热点6"
+    },
+    {
+      "record_id": "h07",
+      "t": 7,
+      "bucket": 7,
+      "payload": "热点7"
+    },
+    {
+      "record_id": "h08",
+      "t": 7,
+      "bucket": 8,
+      "payload": "热点8"
+    },
+    {
+      "record_id": "h09",
+      "t": 7,
+      "bucket": 9,
+      "payload": "热点9"
+    },
+    {
+      "record_id": "h10",
+      "t": 7,
+      "bucket": 10,
+      "payload": "热点10"
+    },
+    {
+      "record_id": "h11",
+      "t": 7,
+      "bucket": 11,
+      "payload": "热点11"
+    }
+  ],
+  "saturated": [
+    {
+      "record_id": "r00",
+      "t": 0,
+      "bucket": 0,
+      "payload": "本地目录0"
+    },
+    {
+      "record_id": "r01",
+      "t": 0,
+      "bucket": 1,
+      "payload": "本地目录1"
+    },
+    {
+      "record_id": "r02",
+      "t": 0,
+      "bucket": 2,
+      "payload": "本地目录2"
+    },
+    {
+      "record_id": "r03",
+      "t": 0,
+      "bucket": 3,
+      "payload": "本地目录3"
+    },
+    {
+      "record_id": "r04",
+      "t": 1,
+      "bucket": 0,
+      "payload": "本地目录4"
+    },
+    {
+      "record_id": "r05",
+      "t": 1,
+      "bucket": 1,
+      "payload": "本地目录5"
+    },
+    {
+      "record_id": "r06",
+      "t": 1,
+      "bucket": 2,
+      "payload": "本地目录6"
+    },
+    {
+      "record_id": "r07",
+      "t": 1,
+      "bucket": 3,
+      "payload": "本地目录7"
+    },
+    {
+      "record_id": "r08",
+      "t": 2,
+      "bucket": 0,
+      "payload": "本地目录8"
+    },
+    {
+      "record_id": "r09",
+      "t": 2,
+      "bucket": 1,
+      "payload": "本地目录9"
+    },
+    {
+      "record_id": "r10",
+      "t": 2,
+      "bucket": 2,
+      "payload": "本地目录10"
+    },
+    {
+      "record_id": "r11",
+      "t": 2,
+      "bucket": 3,
+      "payload": "本地目录11"
+    },
+    {
+      "record_id": "r12",
+      "t": 3,
+      "bucket": 0,
+      "payload": "本地目录12"
+    },
+    {
+      "record_id": "r13",
+      "t": 3,
+      "bucket": 1,
+      "payload": "本地目录13"
+    },
+    {
+      "record_id": "r14",
+      "t": 3,
+      "bucket": 2,
+      "payload": "本地目录14"
+    },
+    {
+      "record_id": "r15",
+      "t": 3,
+      "bucket": 3,
+      "payload": "本地目录15"
+    },
+    {
+      "record_id": "r16",
+      "t": 4,
+      "bucket": 0,
+      "payload": "本地目录16"
+    },
+    {
+      "record_id": "r17",
+      "t": 4,
+      "bucket": 1,
+      "payload": "本地目录17"
+    },
+    {
+      "record_id": "r18",
+      "t": 4,
+      "bucket": 2,
+      "payload": "本地目录18"
+    },
+    {
+      "record_id": "r19",
+      "t": 4,
+      "bucket": 3,
+      "payload": "本地目录19"
+    },
+    {
+      "record_id": "s00",
+      "t": 2,
+      "bucket": 2,
+      "payload": "同坐标不同记录0"
+    },
+    {
+      "record_id": "s01",
+      "t": 2,
+      "bucket": 2,
+      "payload": "同坐标不同记录1"
+    },
+    {
+      "record_id": "s02",
+      "t": 2,
+      "bucket": 2,
+      "payload": "同坐标不同记录2"
+    },
+    {
+      "record_id": "s03",
+      "t": 2,
+      "bucket": 2,
+      "payload": "同坐标不同记录3"
+    },
+    {
+      "record_id": "s04",
+      "t": 2,
+      "bucket": 2,
+      "payload": "同坐标不同记录4"
+    },
+    {
+      "record_id": "s05",
+      "t": 2,
+      "bucket": 2,
+      "payload": "同坐标不同记录5"
+    }
+  ],
+  "expired": [
+    {
+      "record_id": "r00",
+      "t": 0,
+      "bucket": 0,
+      "payload": "本地目录0"
+    },
+    {
+      "record_id": "r01",
+      "t": 0,
+      "bucket": 1,
+      "payload": "本地目录1"
+    },
+    {
+      "record_id": "r02",
+      "t": 0,
+      "bucket": 2,
+      "payload": "本地目录2"
+    },
+    {
+      "record_id": "r03",
+      "t": 0,
+      "bucket": 3,
+      "payload": "本地目录3"
+    },
+    {
+      "record_id": "r04",
+      "t": 1,
+      "bucket": 0,
+      "payload": "本地目录4"
+    },
+    {
+      "record_id": "r05",
+      "t": 1,
+      "bucket": 1,
+      "payload": "本地目录5"
+    },
+    {
+      "record_id": "r06",
+      "t": 1,
+      "bucket": 2,
+      "payload": "本地目录6"
+    },
+    {
+      "record_id": "r07",
+      "t": 1,
+      "bucket": 3,
+      "payload": "本地目录7"
+    },
+    {
+      "record_id": "r08",
+      "t": 2,
+      "bucket": 0,
+      "payload": "本地目录8"
+    },
+    {
+      "record_id": "r09",
+      "t": 2,
+      "bucket": 1,
+      "payload": "本地目录9"
+    },
+    {
+      "record_id": "r10",
+      "t": 2,
+      "bucket": 2,
+      "payload": "本地目录10"
+    },
+    {
+      "record_id": "r11",
+      "t": 2,
+      "bucket": 3,
+      "payload": "本地目录11"
+    },
+    {
+      "record_id": "r12",
+      "t": 3,
+      "bucket": 0,
+      "payload": "本地目录12"
+    },
+    {
+      "record_id": "r13",
+      "t": 3,
+      "bucket": 1,
+      "payload": "本地目录13"
+    },
+    {
+      "record_id": "r14",
+      "t": 3,
+      "bucket": 2,
+      "payload": "本地目录14"
+    },
+    {
+      "record_id": "r15",
+      "t": 3,
+      "bucket": 3,
+      "payload": "本地目录15"
+    },
+    {
+      "record_id": "r16",
+      "t": 4,
+      "bucket": 0,
+      "payload": "本地目录16"
+    },
+    {
+      "record_id": "r17",
+      "t": 4,
+      "bucket": 1,
+      "payload": "本地目录17"
+    },
+    {
+      "record_id": "r18",
+      "t": 4,
+      "bucket": 2,
+      "payload": "本地目录18"
+    },
+    {
+      "record_id": "r19",
+      "t": 4,
+      "bucket": 3,
+      "payload": "本地目录19"
+    },
+    {
+      "record_id": "h00",
+      "t": 7,
+      "bucket": 0,
+      "payload": "热点0"
+    },
+    {
+      "record_id": "h01",
+      "t": 7,
+      "bucket": 1,
+      "payload": "热点1"
+    },
+    {
+      "record_id": "h02",
+      "t": 7,
+      "bucket": 2,
+      "payload": "热点2"
+    },
+    {
+      "record_id": "h03",
+      "t": 7,
+      "bucket": 3,
+      "payload": "热点3"
+    },
+    {
+      "record_id": "h04",
+      "t": 7,
+      "bucket": 4,
+      "payload": "热点4"
+    },
+    {
+      "record_id": "h05",
+      "t": 7,
+      "bucket": 5,
+      "payload": "热点5"
+    },
+    {
+      "record_id": "h06",
+      "t": 7,
+      "bucket": 6,
+      "payload": "热点6"
+    },
+    {
+      "record_id": "h07",
+      "t": 7,
+      "bucket": 7,
+      "payload": "热点7"
+    },
+    {
+      "record_id": "h08",
+      "t": 7,
+      "bucket": 8,
+      "payload": "热点8"
+    },
+    {
+      "record_id": "h09",
+      "t": 7,
+      "bucket": 9,
+      "payload": "热点9"
+    },
+    {
+      "record_id": "h10",
+      "t": 7,
+      "bucket": 10,
+      "payload": "热点10"
+    },
+    {
+      "record_id": "h11",
+      "t": 7,
+      "bucket": 11,
+      "payload": "热点11"
+    }
+  ]
+}
