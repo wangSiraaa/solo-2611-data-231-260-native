@@ -1,0 +1,66 @@
+[
+  {
+    "op": "insert",
+    "file": "fixtures/payloads/a.bin",
+    "as": "A"
+  },
+  {
+    "op": "insert",
+    "file": "fixtures/payloads/b.bin",
+    "as": "B"
+  },
+  {
+    "op": "insert",
+    "file": "fixtures/payloads/c.bin",
+    "as": "C"
+  },
+  {
+    "op": "update",
+    "rid": "A",
+    "file": "fixtures/payloads/a_grown.bin"
+  },
+  {
+    "op": "delete",
+    "rid": "B"
+  },
+  {
+    "op": "compact_all"
+  },
+  {
+    "op": "get",
+    "rid": "A"
+  },
+  {
+    "op": "get",
+    "rid": "C"
+  },
+  {
+    "op": "insert",
+    "file": "fixtures/payloads/replacement.bin",
+    "as": "D"
+  },
+  {
+    "op": "get",
+    "rid": "B",
+    "expect": "stale_or_deleted"
+  },
+  {
+    "op": "update",
+    "rid": "C",
+    "file": "fixtures/payloads/c_grown.bin"
+  },
+  {
+    "op": "update",
+    "rid": "A",
+    "file": "fixtures/payloads/b_small.bin"
+  },
+  {
+    "op": "compact_all"
+  },
+  {
+    "op": "reopen"
+  },
+  {
+    "op": "scan"
+  }
+]

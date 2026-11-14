@@ -1,0 +1,5 @@
+{
+  "page_bytes": 256,
+  "max_payload_bytes": 180,
+  "max_live_records": 100
+}
