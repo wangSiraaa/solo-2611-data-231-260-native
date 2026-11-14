@@ -1,0 +1,15 @@
+{"op": "data", "side": "L", "id": "l1", "key": "a", "ts": 10, "value": 1}
+{"op": "data", "side": "R", "id": "r1", "key": "a", "ts": 13, "value": 2}
+{"op": "data", "side": "L", "id": "l2", "key": "a", "ts": 12, "value": 3}
+{"op": "data", "side": "R", "id": "r2", "key": "a", "ts": 10, "value": 4}
+{"op": "data", "side": "L", "id": "l3", "key": "b", "ts": 8, "value": 5}
+{"op": "watermark", "side": "R", "ts": 12}
+{"op": "data", "side": "R", "id": "late-r", "key": "b", "ts": 9, "value": 6}
+{"op": "data", "side": "R", "id": "edge-r", "key": "a", "ts": 14, "value": 7}
+{"op": "watermark", "side": "L", "ts": 13}
+{"op": "data", "side": "L", "id": "l4", "key": "a", "ts": 13, "value": 8}
+{"op": "watermark", "side": "R", "ts": 17}
+{"op": "watermark", "side": "L", "ts": 17}
+{"op": "data", "side": "L", "id": "l5", "key": "z", "ts": 20, "value": 9}
+{"op": "end", "side": "R"}
+{"op": "end", "side": "L"}

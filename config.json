@@ -1,0 +1,5 @@
+{
+  "lower_ms": -2,
+  "upper_ms": 4,
+  "watermark_semantics": "未来合法数据的ts必须>=本侧最近watermark，区间为[left.ts+lower,left.ts+upper)"
+}
