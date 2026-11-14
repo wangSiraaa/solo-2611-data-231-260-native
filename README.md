@@ -1,3 +1,1 @@
-# SOLO 数据工程输入材料 231–260
-
-各题独立初始提交提供合成小输入或模拟服务，核心实现由独立会话完成。使用原生Python 3.11、Node.js 20或PostgreSQL 16。
+fixtures/root.h5为主输入，相对external/part路径均在同目录。含硬链接共享组和self环、软链、指向同一外部对象的两条路径、带未映射填充值区间的VDS及空dataset。dangling、soft-cycle、missing-vds为分别失败的输入，不能用HDF5静默fill把丢失源当正常数据。所有数据为合成。
