@@ -1,0 +1,28 @@
+{
+  "docs": {
+    "d1": {
+      "items": [
+        {
+          "sku": "A",
+          "qty": 1
+        },
+        {
+          "sku": "B",
+          "qty": 2
+        },
+        {
+          "sku": "C",
+          "qty": 3
+        }
+      ],
+      "a/b": {
+        "~tag": "old"
+      },
+      "optional": null
+    },
+    "d2": {
+      "items": [],
+      "status": "new"
+    }
+  }
+}

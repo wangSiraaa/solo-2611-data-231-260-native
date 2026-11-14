@@ -1,0 +1,8 @@
+{"batch_id": "p1", "doc_id": "d1", "ops": [{"op": "move", "from": "/items/0", "path": "/items/2"}, {"op": "test", "path": "/items/2/sku", "value": "A"}]}
+{"batch_id": "p2", "doc_id": "d1", "ops": [{"op": "copy", "from": "/items/0", "path": "/items/-"}, {"op": "replace", "path": "/items/0/qty", "value": 20}, {"op": "replace", "path": "/a~1b/~0tag", "value": "new"}]}
+{"batch_id": "p3", "doc_id": "d1", "ops": [{"op": "add", "path": "/leak", "value": true}, {"op": "test", "path": "/optional", "value": false}]}
+{"batch_id": "p4", "doc_id": "d2", "ops": [{"op": "add", "path": "/items/-", "value": null}, {"op": "replace", "path": "/status", "value": "ready"}]}
+{"batch_id": "p5", "doc_id": "d1", "ops": [{"op": "move", "from": "/items", "path": "/items/0/child"}]}
+{"batch_id": "p6", "doc_id": "d1", "ops": [{"op": "test", "path": "/items/1/qty", "value": 3.0}, {"op": "remove", "path": "/optional"}]}
+{"batch_id": "p7", "doc_id": "d2", "ops": [{"op": "replace", "path": "", "value": [1, 2, 3]}]}
+{"batch_id": "p8", "doc_id": "d2", "ops": [{"op": "add", "path": "/01", "value": 9}]}
