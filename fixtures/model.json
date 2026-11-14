@@ -1,0 +1,83 @@
+{
+  "fact": "fact",
+  "snapshot": "fact-v1",
+  "dimensions": [
+    "day",
+    "region",
+    "product"
+  ],
+  "views": [
+    {
+      "name": "v_detail",
+      "dimensions": [
+        "day",
+        "region",
+        "product"
+      ],
+      "measures": {
+        "count": "n",
+        "amount_count": "n_amount",
+        "amount_sum": "s_amount"
+      },
+      "predicate": {},
+      "snapshot": "fact-v1"
+    },
+    {
+      "name": "v_daily",
+      "dimensions": [
+        "day",
+        "region"
+      ],
+      "measures": {
+        "count": "n",
+        "amount_count": "n_amount",
+        "amount_sum": "s_amount"
+      },
+      "predicate": {},
+      "snapshot": "fact-v1"
+    },
+    {
+      "name": "v_avg",
+      "dimensions": [
+        "region"
+      ],
+      "measures": {
+        "amount_avg": "avg_amount"
+      },
+      "predicate": {},
+      "snapshot": "fact-v1"
+    },
+    {
+      "name": "v_a",
+      "dimensions": [
+        "day",
+        "region"
+      ],
+      "measures": {
+        "count": "n",
+        "amount_count": "n_amount",
+        "amount_sum": "s_amount"
+      },
+      "predicate": {
+        "product": [
+          "A"
+        ]
+      },
+      "snapshot": "fact-v1"
+    },
+    {
+      "name": "v_stale",
+      "dimensions": [
+        "day",
+        "region"
+      ],
+      "measures": {
+        "count": "n",
+        "amount_count": "n_amount",
+        "amount_sum": "s_amount"
+      },
+      "predicate": {},
+      "snapshot": "fact-v0"
+    }
+  ]
+}

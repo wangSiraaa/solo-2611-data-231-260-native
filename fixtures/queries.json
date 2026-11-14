@@ -1,0 +1,73 @@
+[
+  {
+    "id": "region_avg",
+    "group_by": [
+      "region"
+    ],
+    "where": {},
+    "measures": [
+      "count",
+      "amount_sum",
+      "amount_avg"
+    ]
+  },
+  {
+    "id": "a_only",
+    "group_by": [
+      "region"
+    ],
+    "where": {
+      "product": [
+        "A"
+      ]
+    },
+    "measures": [
+      "amount_sum",
+      "amount_avg"
+    ]
+  },
+  {
+    "id": "b_only",
+    "group_by": [
+      "day"
+    ],
+    "where": {
+      "product": [
+        "B"
+      ]
+    },
+    "measures": [
+      "count",
+      "amount_avg"
+    ]
+  },
+  {
+    "id": "day_filter",
+    "group_by": [
+      "region"
+    ],
+    "where": {
+      "day": [
+        "2026-01-02"
+      ]
+    },
+    "measures": [
+      "count",
+      "amount_avg"
+    ]
+  },
+  {
+    "id": "global",
+    "group_by": [],
+    "where": {
+      "region": [
+        "missing"
+      ]
+    },
+    "measures": [
+      "count",
+      "amount_sum",
+      "amount_avg"
+    ]
+  }
+]
