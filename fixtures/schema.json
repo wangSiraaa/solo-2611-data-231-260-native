@@ -1,0 +1,57 @@
+{
+  "attributes": [
+    "employee",
+    "name",
+    "department",
+    "office",
+    "skill",
+    "rating"
+  ],
+  "dependencies": [
+    {
+      "lhs": [
+        "employee"
+      ],
+      "rhs": [
+        "name",
+        "department"
+      ]
+    },
+    {
+      "lhs": [
+        "department"
+      ],
+      "rhs": [
+        "office"
+      ]
+    },
+    {
+      "lhs": [
+        "employee",
+        "skill"
+      ],
+      "rhs": [
+        "rating"
+      ]
+    },
+    {
+      "lhs": [
+        "employee",
+        "skill"
+      ],
+      "rhs": [
+        "name"
+      ]
+    }
+  ],
+  "attribute_order": [
+    "employee",
+    "name",
+    "department",
+    "office",
+    "skill",
+    "rating"
+  ],
+  "value_type": "non-null exact UTF-8 string",
+  "relation_semantics": "set; duplicate full business tuple is rejected"
+}
