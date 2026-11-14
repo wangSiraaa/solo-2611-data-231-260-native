@@ -1,0 +1,20 @@
+{
+  "trajectory_dim": "trajectory",
+  "profile_dim": "profile",
+  "observation_dim": "obs",
+  "trajectory_id": "trajectory_id",
+  "profile_id": "profile_id",
+  "profile_to_trajectory": "trajectoryIndex",
+  "observation_layout": {
+    "contiguous": "rowSize",
+    "indexed": "profileIndex"
+  },
+  "variables": [
+    "campaign",
+    "time",
+    "latitude",
+    "depth",
+    "quality",
+    "station_note"
+  ]
+}

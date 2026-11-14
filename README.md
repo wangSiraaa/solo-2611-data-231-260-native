@@ -1,3 +1,1 @@
-# SOLO 数据工程输入材料 231–260
-
-各题独立初始提交提供合成小输入或模拟服务，核心实现由独立会话完成。使用原生Python 3.11、Node.js 20或PostgreSQL 16。
+每个nc独立转一次，不能将两个正常文件当同一数据重复合并。contiguous通过rowSize把obs分段归属profile（含零观测P-1）；indexed通过显式profileIndex且观测交错。trajectoryIndex不按profile顺序对应轨迹。depth有packed int16与_FillValue，quality有自身缺测。mapping给出变量选择；变量维度仍需读取文件。两个bad文件须整体拒绝。
