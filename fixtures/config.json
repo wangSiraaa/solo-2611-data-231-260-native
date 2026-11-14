@@ -1,0 +1,14 @@
+{
+  "buffer_samples": 3,
+  "worker_count": 2,
+  "seed": 42,
+  "epoch": 0,
+  "parts": [
+    "png",
+    "json",
+    "txt"
+  ],
+  "max_member_bytes": 65536,
+  "seed_derivation": "SHA256 of UTF8 json.dumps([seed,epoch,worker_id],separators=(comma,colon)); first 8 digest bytes as unsigned big-endian integer; random.Random(integer)",
+  "shuffle": "Fill up to B; for each next complete sample use randrange(len(buffer)), emit selected then replace; after EOF repeatedly randrange then pop."
+}

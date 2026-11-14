@@ -1,0 +1,17 @@
+[
+  {
+    "shard_id": "0",
+    "path": "shards/0.tar",
+    "sha256": "80720355dfa6aaa4a0cf41c2ad6810bec6e8e89a69c1f83141dde59f94beb8e4"
+  },
+  {
+    "shard_id": "1",
+    "path": "shards/1.tar",
+    "sha256": "dda6ac44dc4be39f25776638eba64bf2b4eeddac1102cd0151983db9e14c33ee"
+  },
+  {
+    "shard_id": "2",
+    "path": "shards/2.tar",
+    "sha256": "28fd5110f9742ce336287097461f676d7119ce2832ef2b6355dcd8eb7c15788e"
+  }
+]
