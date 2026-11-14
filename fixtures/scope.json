@@ -1,0 +1,30 @@
+{
+  "part": "word/document.xml",
+  "text_nodes": [
+    "w:t",
+    "w:delText"
+  ],
+  "control_text": {
+    "w:tab": "\\t",
+    "w:br": "\\n"
+  },
+  "original_excludes": [
+    "w:ins",
+    "w:moveTo"
+  ],
+  "final_excludes": [
+    "w:del",
+    "w:moveFrom"
+  ],
+  "move_pairing": "RangeStart/End matched per side by w:id; source/target paired by equal w:name on starts; internal move change IDs may differ",
+  "move_scope": "each source or target range contained in one paragraph; exactly one matching move container; no crossing ranges; source/target literal text equal in this bounded profile",
+  "unsupported": [
+    "paragraph-mark revision",
+    "table structural revision",
+    "field codes",
+    "embedded objects",
+    "footnotes/endnotes",
+    "numbering computation"
+  ],
+  "empty_paragraph": "preserve structural identity with empty projected text"
+}
