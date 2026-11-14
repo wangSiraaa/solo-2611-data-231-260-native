@@ -1,0 +1,24 @@
+{
+  "field_types": [
+    "Tx",
+    "Btn checkbox",
+    "Btn radio",
+    "Ch choice"
+  ],
+  "inheritable": [
+    "FT",
+    "Ff",
+    "V",
+    "DV"
+  ],
+  "views": "V logical current versus widget AS/AP evidence; missing V not replaced by DV",
+  "identity": "full name components plus original object ref; reject same name assigned unrelated terminal fields",
+  "radio_flag": 32768,
+  "unsupported": [
+    "XFA",
+    "Sig",
+    "pushbutton",
+    "JavaScript",
+    "calculation actions"
+  ]
+}

@@ -1,0 +1,253 @@
+%PDF-1.3
+%‚„œ”
+1 0 obj
+<<
+/Producer (pypdf)
+>>
+endobj
+2 0 obj
+<<
+/Type /Pages
+/Count 2
+/Kids [ 4 0 R 5 0 R ]
+>>
+endobj
+3 0 obj
+<<
+/Type /Catalog
+/Pages 2 0 R
+/AcroForm 20 0 R
+>>
+endobj
+4 0 obj
+<<
+/Type /Page
+/Resources <<
+>>
+/MediaBox [ 0.0 0.0 200 200 ]
+/Parent 2 0 R
+/Annots [ 9 0 R 12 0 R 14 0 R 16 0 R 18 0 R ]
+>>
+endobj
+5 0 obj
+<<
+/Type /Page
+/Resources <<
+>>
+/MediaBox [ 0.0 0.0 200 200 ]
+/Parent 2 0 R
+/Annots [ 10 0 R 19 0 R ]
+>>
+endobj
+6 0 obj
+<<
+/Type /XObject
+/Subtype /Form
+/BBox [ 0 0 10 10 ]
+/Length 0
+>>
+stream
+
+endstream
+endobj
+7 0 obj
+<<
+/T (contact)
+/FT /Tx
+/Kids [ 8 0 R 7 0 R ]
+>>
+endobj
+8 0 obj
+<<
+/T (name)
+/Parent 7 0 R
+/V (\376\377gNf\016)
+/Kids [ 9 0 R 10 0 R ]
+>>
+endobj
+9 0 obj
+<<
+/Type /Annot
+/Subtype /Widget
+/Rect [ 10 10 60 30 ]
+/Parent 8 0 R
+/P 4 0 R
+/AS /Off
+/AP <<
+/N <<
+/Off 6 0 R
+/Yes 6 0 R
+>>
+>>
+>>
+endobj
+10 0 obj
+<<
+/Type /Annot
+/Subtype /Widget
+/Rect [ 10 10 60 30 ]
+/Parent 8 0 R
+/P 5 0 R
+/AS /Off
+/AP <<
+/N <<
+/Off 6 0 R
+/Yes 6 0 R
+>>
+>>
+>>
+endobj
+11 0 obj
+<<
+/T (consent)
+/FT /Btn
+/Ff 0
+/V /Yes
+/Kids [ 12 0 R ]
+>>
+endobj
+12 0 obj
+<<
+/Type /Annot
+/Subtype /Widget
+/Rect [ 10 10 60 30 ]
+/Parent 11 0 R
+/P 4 0 R
+/AS /Off
+/AP <<
+/N <<
+/Off 6 0 R
+/Yes 6 0 R
+>>
+>>
+>>
+endobj
+13 0 obj
+<<
+/T (choice)
+/FT /Ch
+/Ff 0
+/V (b)
+/Opt [ [ (a) (\376\377u2) ] [ (b) (\376\377NY) ] ]
+/I [ 1 ]
+/Kids [ 14 0 R ]
+>>
+endobj
+14 0 obj
+<<
+/Type /Annot
+/Subtype /Widget
+/Rect [ 10 10 60 30 ]
+/Parent 13 0 R
+/P 4 0 R
+/AS /Off
+/AP <<
+/N <<
+/Off 6 0 R
+>>
+>>
+>>
+endobj
+15 0 obj
+<<
+/T (default\137only)
+/FT /Tx
+/Ff 0
+/DV (\376\377\134\032g\052XkQ\231\236\330\213\244P\074)
+/Kids [ 16 0 R ]
+>>
+endobj
+16 0 obj
+<<
+/Type /Annot
+/Subtype /Widget
+/Rect [ 10 10 60 30 ]
+/Parent 15 0 R
+/P 4 0 R
+/AS /Off
+/AP <<
+/N <<
+/Off 6 0 R
+>>
+>>
+>>
+endobj
+17 0 obj
+<<
+/T (radio)
+/FT /Btn
+/Ff 32768
+/V /B
+/Kids [ 18 0 R 19 0 R ]
+>>
+endobj
+18 0 obj
+<<
+/Type /Annot
+/Subtype /Widget
+/Rect [ 10 10 60 30 ]
+/Parent 17 0 R
+/P 4 0 R
+/AS /Off
+/AP <<
+/N <<
+/Off 6 0 R
+/A 6 0 R
+>>
+>>
+>>
+endobj
+19 0 obj
+<<
+/Type /Annot
+/Subtype /Widget
+/Rect [ 10 10 60 30 ]
+/Parent 17 0 R
+/P 5 0 R
+/AS /B
+/AP <<
+/N <<
+/Off 6 0 R
+/B 6 0 R
+>>
+>>
+>>
+endobj
+20 0 obj
+<<
+/Fields [ 7 0 R 11 0 R 13 0 R 15 0 R 17 0 R ]
+/NeedAppearances false
+>>
+endobj
+xref
+0 21
+0000000000 65535 f 
+0000000015 00000 n 
+0000000054 00000 n 
+0000000119 00000 n 
+0000000185 00000 n 
+0000000325 00000 n 
+0000000445 00000 n 
+0000000544 00000 n 
+0000000608 00000 n 
+0000000697 00000 n 
+0000000843 00000 n 
+0000000990 00000 n 
+0000001065 00000 n 
+0000001213 00000 n 
+0000001345 00000 n 
+0000001482 00000 n 
+0000001612 00000 n 
+0000001749 00000 n 
+0000001831 00000 n 
+0000001977 00000 n 
+0000002121 00000 n 
+trailer
+<<
+/Size 21
+/Root 3 0 R
+/Info 1 0 R
+>>
+startxref
+2212
+%%EOF
