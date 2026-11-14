@@ -1,3 +1,1 @@
-# SOLO 数据工程输入材料 231–260
-
-各题独立初始提交提供合成小输入或模拟服务，核心实现由独立会话完成。使用原生Python 3.11、Node.js 20或PostgreSQL 16。
+source.sqlite为标准sqlite3创建的UTF8数据库，page_size=512，records为普通rowid表。包含负/零/大rowid、NULL/空字符串/空BLOB、Unicode和跨overflow页的1500字节BLOB；足够多行形成内部表页。table.json给已确认rootpage与列序，不需要查询sqlite_schema。truncated.sqlite与bad-table.json分别用于拒绝不完整页和越界根页。禁止修改输入。可用sqlite3作为独立验证oracle。

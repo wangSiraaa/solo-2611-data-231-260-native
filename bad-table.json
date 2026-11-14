@@ -1,0 +1,15 @@
+{
+  "table": "records",
+  "rootpage": 99999,
+  "columns": [
+    "id",
+    "label",
+    "amount",
+    "payload",
+    "note"
+  ],
+  "integer_primary_key_index": 0,
+  "encoding": "UTF-8",
+  "blob_json": "hex lowercase",
+  "page_size": 512
+}
