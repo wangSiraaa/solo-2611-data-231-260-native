@@ -1,0 +1,21 @@
+{
+  "body_units": [
+    "h1",
+    "h2",
+    "p"
+  ],
+  "exclude_from_body": [
+    "script",
+    "style",
+    "aside with epub:type footnote"
+  ],
+  "whitespace": "concatenate eligible inline text in DOM order; HTML whitespace runs become one ASCII space; trim edges; noteref marker text contributes zero length; reference offset in resulting Unicode codepoints",
+  "references": "URI resolution includes inherited xml:base; missing/external/non-footnote targets diagnostic; visited target identity path#id prevents cycle",
+  "unsupported": [
+    "non-XHTML spine body",
+    "tables",
+    "XFA",
+    "media overlays"
+  ],
+  "partial": "missing note references allow body/known notes with complete=false; unknown spine rejects book"
+}
