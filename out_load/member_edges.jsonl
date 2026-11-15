@@ -1,0 +1,1 @@
+{"attribute": "member", "member_dn": "cn=Doe\\, Jane+uid=jane,ou=People,dc=example,dc=test", "src_uuid": "team-001", "status": "resolved", "target_uuid": "jane-001"}

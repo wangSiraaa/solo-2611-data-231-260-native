@@ -1,0 +1,22 @@
+{"attribute": "entryuuid", "uuid": "archive-001", "value": "archive-001"}
+{"attribute": "objectclass", "uuid": "archive-001", "value": "organizationalUnit"}
+{"attribute": "ou", "uuid": "archive-001", "value": "Archive"}
+{"attribute": "cn", "uuid": "badge-001", "value": "Badge"}
+{"attribute": "entryuuid", "uuid": "badge-001", "value": "badge-001"}
+{"attribute": "objectclass", "uuid": "badge-001", "value": "person"}
+{"attribute": "cn", "uuid": "jane-001", "value": "Doe, Jane"}
+{"attribute": "description", "uuid": "jane-001", "value": "入职资料"}
+{"attribute": "entryuuid", "uuid": "jane-001", "value": "jane-001"}
+{"attribute": "objectclass", "uuid": "jane-001", "value": "person"}
+{"attribute": "uid", "uuid": "jane-001", "value": "jane"}
+{"attribute": "entryuuid", "uuid": "people-001", "value": "people-001"}
+{"attribute": "objectclass", "uuid": "people-001", "value": "organizationalUnit"}
+{"attribute": "ou", "uuid": "people-001", "value": "People"}
+{"attribute": "dc", "uuid": "root-001", "value": "example"}
+{"attribute": "entryuuid", "uuid": "root-001", "value": "root-001"}
+{"attribute": "objectclass", "uuid": "root-001", "value": "domain"}
+{"attribute": "cn", "uuid": "team-001", "value": "Team"}
+{"attribute": "description", "uuid": "team-001", "value": "This line is deliberatelyfolded once."}
+{"attribute": "entryuuid", "uuid": "team-001", "value": "team-001"}
+{"attribute": "member", "uuid": "team-001", "value": "cn=Doe\\, Jane+uid=jane,ou=People,dc=example,dc=test"}
+{"attribute": "objectclass", "uuid": "team-001", "value": "group"}

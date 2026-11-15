@@ -1,0 +1,52 @@
+# Supplementary change records, applied after fixtures/changes.ldif.
+# Cover the remaining required cases: same-name collisions (modrdn and
+# add variants) and deleteoldrdn=0, plus small guards for the modify
+# rules (RDN/attribute contradiction, immutable entryUUID, duplicate
+# add value).
+
+# record 9: same-name collision -- moving cn=李雷 under the root with an
+# RDN that already exists there (cn=Team) must fail as a whole.
+dn: cn=李雷,ou=People,dc=example,dc=test
+changetype: modrdn
+newrdn: cn=Team
+deleteoldrdn: 1
+newsuperior: dc=example,dc=test
+
+# record 10: same-name collision -- adding a DN that already exists.
+dn: cn=李雷,ou=People,dc=example,dc=test
+changetype: add
+entryUUID: li-002
+objectClass: person
+cn: 李雷
+uid: lilei-again
+
+# record 11: deleteoldrdn=0 -- rename keeps the old RDN value and adds
+# the new one, so cn ends up as {李雷, LiLei}.
+dn: cn=李雷,ou=People,dc=example,dc=test
+changetype: modrdn
+newrdn: cn=LiLei
+deleteoldrdn: 0
+
+# record 12: modify must not contradict the name -- deleting the value
+# the current RDN needs (cn=LiLei) fails and rolls back.
+dn: cn=LiLei,ou=People,dc=example,dc=test
+changetype: modify
+delete: cn
+cn: LiLei
+-
+
+# record 13: entryUUID is immutable.
+dn: cn=Team,dc=example,dc=test
+changetype: modify
+replace: entryUUID
+entryUUID: team-999
+-
+
+# record 14: adding a value that is already present fails (set
+# semantics); this is exactly the folded description from base.ldif
+# (LDIF folding concatenates without keeping the newline's space).
+dn: cn=Team,dc=example,dc=test
+changetype: modify
+add: description
+description: This line is deliberatelyfolded once.
+-

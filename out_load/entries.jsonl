@@ -1,0 +1,6 @@
+{"dn": "ou=Archive,dc=example,dc=test", "parent_dn": "dc=example,dc=test", "rdn": "ou=Archive", "uuid": "archive-001"}
+{"dn": "cn=Badge,cn=Doe\\, Jane+uid=jane,ou=People,dc=example,dc=test", "parent_dn": "cn=Doe\\, Jane+uid=jane,ou=People,dc=example,dc=test", "rdn": "cn=Badge", "uuid": "badge-001"}
+{"dn": "cn=Doe\\, Jane+uid=jane,ou=People,dc=example,dc=test", "parent_dn": "ou=People,dc=example,dc=test", "rdn": "cn=Doe\\, Jane+uid=jane", "uuid": "jane-001"}
+{"dn": "ou=People,dc=example,dc=test", "parent_dn": "dc=example,dc=test", "rdn": "ou=People", "uuid": "people-001"}
+{"dn": "dc=example,dc=test", "parent_dn": "dc=test", "rdn": "dc=example", "uuid": "root-001"}
+{"dn": "cn=Team,dc=example,dc=test", "parent_dn": "dc=example,dc=test", "rdn": "cn=Team", "uuid": "team-001"}
