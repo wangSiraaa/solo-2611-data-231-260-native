@@ -1,0 +1,550 @@
+{
+  "summary": {
+    "passed": 26,
+    "failed": 0,
+    "scenarios": [
+      "lag_and_clients",
+      "observe_validation",
+      "snapshot",
+      "generation"
+    ],
+    "data_root": "/workspace/records/latest/data"
+  },
+  "checks": [
+    {
+      "check": "two commits landed on primary (seq 1, 2), replica NOT synced",
+      "passed": true,
+      "detail": "{'cluster_id': 'demo-cluster', 'generation': 1, 'commit_seq': 1} {'cluster_id': 'demo-cluster', 'generation': 1, 'commit_seq': 2}"
+    },
+    {
+      "check": "A observe commit2 accepted, bookmark=2",
+      "passed": true,
+      "detail": "{\"status\": \"ok\", \"client_id\": \"A\", \"receipt_seq\": 2, \"previous_bookmark\": 0, \"bookmark\": 2, \"advanced\": true}"
+    },
+    {
+      "check": "bookmarks survive process restarts; clients isolated (A=2, B=0)",
+      "passed": true,
+      "detail": "A=2 B=0"
+    },
+    {
+      "check": "A: replica too stale -> waits >= wait_ms, retries, falls back to primary",
+      "passed": true,
+      "detail": "node=primary attempts=7 elapsed_ms=104.125"
+    },
+    {
+      "check": "A: sees its own confirmed writes (a=568, b=432, max_seq=2)",
+      "passed": true,
+      "detail": "{\"accounts\": [{\"id\": \"a\", \"balance\": 568}, {\"id\": \"b\", \"balance\": 432}], \"history\": {\"max_seq\": 2, \"n\": 2}}"
+    },
+    {
+      "check": "A primary read: invariant sum(balances)=1000 & max_seq~applied_seq",
+      "passed": true,
+      "detail": "sum=1000 applied_seq=2 max_seq=2"
+    },
+    {
+      "check": "B: no receipt -> required_seq=0 -> reads the stale replica immediately",
+      "passed": true,
+      "detail": "node=replica attempts=1 required_seq=0"
+    },
+    {
+      "check": "B: reads pre-commit state (a=600, b=400, empty history)",
+      "passed": true,
+      "detail": "{\"accounts\": [{\"id\": \"a\", \"balance\": 600}, {\"id\": \"b\", \"balance\": 400}], \"history\": {\"max_seq\": null, \"n\": 0}}"
+    },
+    {
+      "check": "B replica read: invariant sum(balances)=1000 & max_seq~applied_seq",
+      "passed": true,
+      "detail": "sum=1000 applied_seq=0 max_seq=None"
+    },
+    {
+      "check": "no cross-client pollution: B bookmark still 0 after all of A's activity",
+      "passed": true,
+      "detail": "{\"status\": \"ok\", \"client_id\": \"B\", \"bookmark\": 0}"
+    },
+    {
+      "check": "A: back to the replica after sync, no fallback needed",
+      "passed": true,
+      "detail": "node=replica attempts=1"
+    },
+    {
+      "check": "A: replica now serves the post-commit state",
+      "passed": true,
+      "detail": "{\"accounts\": [{\"id\": \"a\", \"balance\": 568}, {\"id\": \"b\", \"balance\": 432}], \"history\": {\"max_seq\": 2, \"n\": 2}}"
+    },
+    {
+      "check": "A replica read: invariant sum(balances)=1000 & max_seq~applied_seq",
+      "passed": true,
+      "detail": "sum=1000 applied_seq=2 max_seq=2"
+    },
+    {
+      "check": "out-of-order/duplicate receipt does not regress the bookmark",
+      "passed": true,
+      "detail": "{\"status\": \"ok\", \"client_id\": \"A\", \"receipt_seq\": 1, \"previous_bookmark\": 2, \"bookmark\": 2, \"advanced\": false}"
+    },
+    {
+      "check": "wrong cluster -> explicit cluster_mismatch error (exit 2)",
+      "passed": true,
+      "detail": "{\"status\": \"error\", \"error\": \"cluster_mismatch\", \"detail\": \"receipt cluster_id 'other-cluster' != expected 'demo-cluster'; bookmark left untouched\"}"
+    },
+    {
+      "check": "wrong generation -> explicit generation_mismatch error (exit 2)",
+      "passed": true,
+      "detail": "{\"status\": \"error\", \"error\": \"generation_mismatch\", \"detail\": \"receipt generation 2 != expected 1; bookmark left untouched\"}"
+    },
+    {
+      "check": "negative seq -> explicit invalid_seq error (exit 2)",
+      "passed": true,
+      "detail": "{\"status\": \"error\", \"error\": \"invalid_seq\", \"detail\": \"commit_seq must be a non-negative integer, got -1\"}"
+    },
+    {
+      "check": "rejections never clear or move the stored bookmark (still 2)",
+      "passed": true,
+      "detail": "{\"status\": \"ok\", \"client_id\": \"A\", \"bookmark\": 2}"
+    },
+    {
+      "check": "read succeeded on the replica in a single attempt",
+      "passed": true,
+      "detail": "{\"cluster_id\": \"demo-cluster\", \"generation\": 1, \"applied_seq\": 2}"
+    },
+    {
+      "check": "hook fired exactly once, between the two report queries",
+      "passed": true,
+      "detail": "[{\"commit\": {\"cluster_id\": \"demo-cluster\", \"generation\": 1, \"commit_seq\": 3}, \"replicate\": {\"cluster_id\": \"demo-cluster\", \"generation\": 1, \"commit_seq\": 3}}]"
+    },
+    {
+      "check": "report not mixed: meta/accounts/history all from the seq=2 snapshot even though the replica reached seq=3 mid-transaction",
+      "passed": true,
+      "detail": "{\"meta\": {\"cluster_id\": \"demo-cluster\", \"generation\": 1, \"applied_seq\": 2}, \"accounts\": [{\"id\": \"a\", \"balance\": 568}, {\"id\": \"b\", \"balance\": 432}], \"history\": {\"max_seq\": 2, \"n\": 2}}"
+    },
+    {
+      "check": "snapshot read: invariant sum(balances)=1000 & max_seq~applied_seq",
+      "passed": true,
+      "detail": "sum=1000 applied_seq=2 max_seq=2"
+    },
+    {
+      "check": "replica really is at seq=3 now (the race was real, not staged)",
+      "passed": true,
+      "detail": "applied_seq=3"
+    },
+    {
+      "check": "identity validated in the real snapshot -> explicit identity_mismatch",
+      "passed": true,
+      "detail": "{\"snapshot_meta\": {\"cluster_id\": \"demo-cluster\", \"generation\": 2, \"applied_seq\": 0}, \"expected\": {\"cluster_id\": \"demo-cluster\", \"generation\": 1}}"
+    },
+    {
+      "check": "not treated as lag: no retry storm, no implicit fallback to primary",
+      "passed": true,
+      "detail": "attempts=1 elapsed_ms=1.175"
+    },
+    {
+      "check": "hook fired exactly once, before BEGIN",
+      "passed": true,
+      "detail": "[\"replica\"]"
+    }
+  ],
+  "steps": [
+    {
+      "t_ms": 0.0,
+      "step": "scenario",
+      "data": {
+        "id": "lag_and_clients",
+        "source": "fixtures/scenarios.json"
+      }
+    },
+    {
+      "t_ms": 11.5,
+      "step": "init",
+      "data": {
+        "initialized": true
+      }
+    },
+    {
+      "t_ms": 14.2,
+      "step": "commit amount=25",
+      "data": {
+        "cluster_id": "demo-cluster",
+        "generation": 1,
+        "commit_seq": 1
+      }
+    },
+    {
+      "t_ms": 17.1,
+      "step": "commit amount=7",
+      "data": {
+        "cluster_id": "demo-cluster",
+        "generation": 1,
+        "commit_seq": 2
+      }
+    },
+    {
+      "t_ms": 43.8,
+      "step": "cli: router.py observe --client A --receipt {\"cluster_id\": \"demo-cluster\", \"generation\": 1, \"commit_seq\": 2}",
+      "data": {
+        "exit_code": 0,
+        "output": {
+          "status": "ok",
+          "client_id": "A",
+          "receipt_seq": 2,
+          "previous_bookmark": 0,
+          "bookmark": 2,
+          "advanced": true
+        }
+      }
+    },
+    {
+      "t_ms": 65.1,
+      "step": "cli: router.py bookmark --client A",
+      "data": {
+        "exit_code": 0,
+        "output": {
+          "status": "ok",
+          "client_id": "A",
+          "bookmark": 2
+        }
+      }
+    },
+    {
+      "t_ms": 86.1,
+      "step": "cli: router.py bookmark --client B",
+      "data": {
+        "exit_code": 0,
+        "output": {
+          "status": "ok",
+          "client_id": "B",
+          "bookmark": 0
+        }
+      }
+    },
+    {
+      "t_ms": 211.8,
+      "step": "cli: router.py read --client A --wait-ms 100 --fallback primary",
+      "data": {
+        "exit_code": 0,
+        "output": {
+          "client_id": "A",
+          "required_seq": 2,
+          "expected_identity": {
+            "cluster_id": "demo-cluster",
+            "generation": 1
+          },
+          "wait_ms": 100,
+          "fallback": "primary",
+          "attempts": 7,
+          "elapsed_ms": 104.125,
+          "status": "ok",
+          "node": "primary",
+          "snapshot_meta": {
+            "cluster_id": "demo-cluster",
+            "generation": 1,
+            "applied_seq": 2
+          },
+          "accounts": [
+            {
+              "id": "a",
+              "balance": 568
+            },
+            {
+              "id": "b",
+              "balance": 432
+            }
+          ],
+          "history": {
+            "max_seq": 2,
+            "n": 2
+          }
+        }
+      }
+    },
+    {
+      "t_ms": 233.7,
+      "step": "cli: router.py read --client B --wait-ms 100 --fallback none",
+      "data": {
+        "exit_code": 0,
+        "output": {
+          "client_id": "B",
+          "required_seq": 0,
+          "expected_identity": {
+            "cluster_id": "demo-cluster",
+            "generation": 1
+          },
+          "wait_ms": 100,
+          "fallback": "none",
+          "attempts": 1,
+          "elapsed_ms": 1.431,
+          "status": "ok",
+          "node": "replica",
+          "snapshot_meta": {
+            "cluster_id": "demo-cluster",
+            "generation": 1,
+            "applied_seq": 0
+          },
+          "accounts": [
+            {
+              "id": "a",
+              "balance": 600
+            },
+            {
+              "id": "b",
+              "balance": 400
+            }
+          ],
+          "history": {
+            "max_seq": null,
+            "n": 0
+          }
+        }
+      }
+    },
+    {
+      "t_ms": 253.1,
+      "step": "cli: router.py bookmark --client B",
+      "data": {
+        "exit_code": 0,
+        "output": {
+          "status": "ok",
+          "client_id": "B",
+          "bookmark": 0
+        }
+      }
+    },
+    {
+      "t_ms": 257.4,
+      "step": "replicate",
+      "data": {
+        "cluster_id": "demo-cluster",
+        "generation": 1,
+        "commit_seq": 2
+      }
+    },
+    {
+      "t_ms": 277.8,
+      "step": "cli: router.py read --client A --wait-ms 100 --fallback none",
+      "data": {
+        "exit_code": 0,
+        "output": {
+          "client_id": "A",
+          "required_seq": 2,
+          "expected_identity": {
+            "cluster_id": "demo-cluster",
+            "generation": 1
+          },
+          "wait_ms": 100,
+          "fallback": "none",
+          "attempts": 1,
+          "elapsed_ms": 1.433,
+          "status": "ok",
+          "node": "replica",
+          "snapshot_meta": {
+            "cluster_id": "demo-cluster",
+            "generation": 1,
+            "applied_seq": 2
+          },
+          "accounts": [
+            {
+              "id": "a",
+              "balance": 568
+            },
+            {
+              "id": "b",
+              "balance": 432
+            }
+          ],
+          "history": {
+            "max_seq": 2,
+            "n": 2
+          }
+        }
+      }
+    },
+    {
+      "t_ms": 277.8,
+      "step": "scenario",
+      "data": {
+        "id": "observe_validation",
+        "note": "extra evidence for receipt rejection rules (A currently holds bookmark=2)"
+      }
+    },
+    {
+      "t_ms": 296.2,
+      "step": "cli: router.py observe --client A --receipt {\"cluster_id\": \"demo-cluster\", \"generation\": 1, \"commit_seq\": 1}",
+      "data": {
+        "exit_code": 0,
+        "output": {
+          "status": "ok",
+          "client_id": "A",
+          "receipt_seq": 1,
+          "previous_bookmark": 2,
+          "bookmark": 2,
+          "advanced": false
+        }
+      }
+    },
+    {
+      "t_ms": 314.0,
+      "step": "cli: router.py observe --client A --receipt {\"cluster_id\": \"other-cluster\", \"generation\": 1, \"commit_seq\": 5}",
+      "data": {
+        "exit_code": 2,
+        "output": {
+          "status": "error",
+          "error": "cluster_mismatch",
+          "detail": "receipt cluster_id 'other-cluster' != expected 'demo-cluster'; bookmark left untouched"
+        }
+      }
+    },
+    {
+      "t_ms": 332.9,
+      "step": "cli: router.py observe --client A --receipt {\"cluster_id\": \"demo-cluster\", \"generation\": 2, \"commit_seq\": 5}",
+      "data": {
+        "exit_code": 2,
+        "output": {
+          "status": "error",
+          "error": "generation_mismatch",
+          "detail": "receipt generation 2 != expected 1; bookmark left untouched"
+        }
+      }
+    },
+    {
+      "t_ms": 351.2,
+      "step": "cli: router.py observe --client A --receipt {\"cluster_id\": \"demo-cluster\", \"generation\": 1, \"commit_seq\": -1}",
+      "data": {
+        "exit_code": 2,
+        "output": {
+          "status": "error",
+          "error": "invalid_seq",
+          "detail": "commit_seq must be a non-negative integer, got -1"
+        }
+      }
+    },
+    {
+      "t_ms": 369.4,
+      "step": "cli: router.py bookmark --client A",
+      "data": {
+        "exit_code": 0,
+        "output": {
+          "status": "ok",
+          "client_id": "A",
+          "bookmark": 2
+        }
+      }
+    },
+    {
+      "t_ms": 369.4,
+      "step": "scenario",
+      "data": {
+        "id": "snapshot",
+        "source": "fixtures/scenarios.json"
+      }
+    },
+    {
+      "t_ms": 372.5,
+      "step": "replicate",
+      "data": {
+        "cluster_id": "demo-cluster",
+        "generation": 1,
+        "commit_seq": 2
+      }
+    },
+    {
+      "t_ms": 378.1,
+      "step": "hook after_accounts: commit amount=3 + replicate (mid-transaction, same reader snapshot)",
+      "data": {
+        "commit": {
+          "cluster_id": "demo-cluster",
+          "generation": 1,
+          "commit_seq": 3
+        },
+        "replicate": {
+          "cluster_id": "demo-cluster",
+          "generation": 1,
+          "commit_seq": 3
+        }
+      }
+    },
+    {
+      "t_ms": 379.0,
+      "step": "A read_report (after_accounts hook injects commit+replicate)",
+      "data": {
+        "client_id": "A",
+        "required_seq": 2,
+        "expected_identity": {
+          "cluster_id": "demo-cluster",
+          "generation": 1
+        },
+        "wait_ms": 100,
+        "fallback": "none",
+        "attempts": 1,
+        "elapsed_ms": 5.906,
+        "status": "ok",
+        "node": "replica",
+        "snapshot_meta": {
+          "cluster_id": "demo-cluster",
+          "generation": 1,
+          "applied_seq": 2
+        },
+        "accounts": [
+          {
+            "id": "a",
+            "balance": 568
+          },
+          {
+            "id": "b",
+            "balance": 432
+          }
+        ],
+        "history": {
+          "max_seq": 2,
+          "n": 2
+        }
+      }
+    },
+    {
+      "t_ms": 379.9,
+      "step": "independent replica meta after the read finished",
+      "data": {
+        "cluster_id": "demo-cluster",
+        "generation": 1,
+        "applied_seq": 3
+      }
+    },
+    {
+      "t_ms": 379.9,
+      "step": "scenario",
+      "data": {
+        "id": "generation",
+        "source": "fixtures/scenarios.json"
+      }
+    },
+    {
+      "t_ms": 381.5,
+      "step": "hook after_node_selected(replica): reset-node generation=2",
+      "data": {
+        "node": "replica",
+        "generation": 2
+      }
+    },
+    {
+      "t_ms": 381.7,
+      "step": "A read_report (after_node_selected hook resets generation; fallback=primary available)",
+      "data": {
+        "client_id": "A",
+        "required_seq": 2,
+        "expected_identity": {
+          "cluster_id": "demo-cluster",
+          "generation": 1
+        },
+        "wait_ms": 100,
+        "fallback": "primary",
+        "attempts": 1,
+        "elapsed_ms": 1.175,
+        "status": "identity_mismatch",
+        "node": "replica",
+        "snapshot_meta": {
+          "cluster_id": "demo-cluster",
+          "generation": 2,
+          "applied_seq": 0
+        },
+        "error": "node 'replica' identity 'demo-cluster'/generation 2 != expected 'demo-cluster'/generation 1; explicit identity_mismatch, no implicit fallback"
+      }
+    }
+  ]
+}
