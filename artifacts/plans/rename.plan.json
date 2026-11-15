@@ -1,0 +1,206 @@
+{
+  "plan_id": "rename",
+  "output": "g",
+  "sort_count": 0,
+  "injected_sorts": [],
+  "nodes": [
+    {
+      "id": "l",
+      "op": "source",
+      "inputs": [],
+      "derived_order": [
+        {
+          "field": "region",
+          "direction": "asc",
+          "nulls": "first"
+        },
+        {
+          "field": "tick",
+          "direction": "asc",
+          "nulls": "first"
+        }
+      ],
+      "schema": {
+        "id": "int",
+        "region": "text",
+        "tick": "int",
+        "amount": "int?"
+      },
+      "evidence": "source left 声明并经真实数据逐相邻行核验: [region asc NULLS FIRST, tick asc NULLS FIRST]",
+      "invalid_reason": null,
+      "detail": {
+        "source": "left"
+      }
+    },
+    {
+      "id": "p",
+      "op": "project",
+      "inputs": [
+        "l"
+      ],
+      "derived_order": [
+        {
+          "field": "area",
+          "direction": "asc",
+          "nulls": "first"
+        },
+        {
+          "field": "time",
+          "direction": "asc",
+          "nulls": "first"
+        }
+      ],
+      "schema": {
+        "area": "text",
+        "time": "int",
+        "amount": "int?"
+      },
+      "evidence": "全部排序键沿原顺序保留并改名: [area asc NULLS FIRST, time asc NULLS FIRST]",
+      "invalid_reason": null,
+      "detail": {
+        "mapping": {
+          "area": "region",
+          "time": "tick",
+          "amount": "amount"
+        }
+      }
+    },
+    {
+      "id": "f",
+      "op": "filter",
+      "inputs": [
+        "p"
+      ],
+      "derived_order": [
+        {
+          "field": "area",
+          "direction": "asc",
+          "nulls": "first"
+        },
+        {
+          "field": "time",
+          "direction": "asc",
+          "nulls": "first"
+        }
+      ],
+      "schema": {
+        "area": "text",
+        "time": "int",
+        "amount": "int?"
+      },
+      "evidence": "稳定 filter 不重排，完整继承输入 p 的可证明次序 [area asc NULLS FIRST, time asc NULLS FIRST]（1/2 行保留）",
+      "invalid_reason": null,
+      "detail": {
+        "field": "amount",
+        "ge": 15
+      }
+    },
+    {
+      "id": "g",
+      "op": "stream_group",
+      "inputs": [
+        "f"
+      ],
+      "derived_order": [
+        {
+          "field": "area",
+          "direction": "asc",
+          "nulls": "first"
+        }
+      ],
+      "schema": {
+        "area": "text",
+        "count": "int",
+        "sum": "int?"
+      },
+      "evidence": "输入 f 的可证明次序满足分组前缀 [area asc NULLS FIRST]：输入排序前缀与要求逐键一致，无需插入 Sort",
+      "invalid_reason": null,
+      "detail": {
+        "keys": [
+          "area"
+        ],
+        "sum": "amount"
+      }
+    }
+  ],
+  "executable_plan": {
+    "id": "rename",
+    "output": "g",
+    "nodes": [
+      {
+        "id": "l",
+        "op": "source",
+        "source": "left",
+        "derived_order": [
+          {
+            "field": "region",
+            "direction": "asc",
+            "nulls": "first"
+          },
+          {
+            "field": "tick",
+            "direction": "asc",
+            "nulls": "first"
+          }
+        ]
+      },
+      {
+        "id": "p",
+        "op": "project",
+        "input": "l",
+        "mapping": {
+          "area": "region",
+          "time": "tick",
+          "amount": "amount"
+        },
+        "derived_order": [
+          {
+            "field": "area",
+            "direction": "asc",
+            "nulls": "first"
+          },
+          {
+            "field": "time",
+            "direction": "asc",
+            "nulls": "first"
+          }
+        ]
+      },
+      {
+        "id": "f",
+        "op": "filter",
+        "input": "p",
+        "field": "amount",
+        "ge": 15,
+        "derived_order": [
+          {
+            "field": "area",
+            "direction": "asc",
+            "nulls": "first"
+          },
+          {
+            "field": "time",
+            "direction": "asc",
+            "nulls": "first"
+          }
+        ]
+      },
+      {
+        "id": "g",
+        "op": "stream_group",
+        "input": "f",
+        "keys": [
+          "area"
+        ],
+        "sum": "amount",
+        "derived_order": [
+          {
+            "field": "area",
+            "direction": "asc",
+            "nulls": "first"
+          }
+        ]
+      }
+    ]
+  }
+}

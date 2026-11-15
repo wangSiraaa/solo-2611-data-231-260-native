@@ -1,0 +1,186 @@
+{
+  "plan_id": "drop_leading",
+  "output": "g",
+  "sort_calls": [
+    {
+      "sort_node": "_sort_1_g",
+      "injected_for": "g",
+      "keys": [
+        {
+          "field": "t",
+          "direction": "asc",
+          "nulls": "first"
+        }
+      ],
+      "stable": true,
+      "input_rows": 4,
+      "output_rows": 4
+    }
+  ],
+  "sort_call_count": 1,
+  "total_input_rows": 0,
+  "total_output_rows": 4,
+  "node_records": [
+    {
+      "node_id": "l",
+      "op": "source",
+      "inputs": [],
+      "input_rows": 0,
+      "output_rows": 2,
+      "detail": {
+        "source": "left",
+        "declared_order": [
+          {
+            "field": "region",
+            "direction": "asc",
+            "nulls": "first"
+          },
+          {
+            "field": "tick",
+            "direction": "asc",
+            "nulls": "first"
+          }
+        ]
+      },
+      "sort_call": null
+    },
+    {
+      "node_id": "r",
+      "op": "source",
+      "inputs": [],
+      "input_rows": 0,
+      "output_rows": 2,
+      "detail": {
+        "source": "right",
+        "declared_order": [
+          {
+            "field": "region",
+            "direction": "asc",
+            "nulls": "first"
+          },
+          {
+            "field": "tick",
+            "direction": "asc",
+            "nulls": "first"
+          }
+        ]
+      },
+      "sort_call": null
+    },
+    {
+      "node_id": "u",
+      "op": "concat",
+      "inputs": [
+        "l",
+        "r"
+      ],
+      "input_rows": 4,
+      "output_rows": 4,
+      "detail": {
+        "boundary_checks": [
+          {
+            "left": "l",
+            "right": "r",
+            "cmp": -1
+          }
+        ]
+      },
+      "sort_call": null
+    },
+    {
+      "node_id": "p",
+      "op": "project",
+      "inputs": [
+        "u"
+      ],
+      "input_rows": 4,
+      "output_rows": 4,
+      "detail": {
+        "mapping": {
+          "t": "tick",
+          "amount": "amount"
+        }
+      },
+      "sort_call": null
+    },
+    {
+      "node_id": "_sort_1_g",
+      "op": "sort",
+      "inputs": [
+        "p"
+      ],
+      "input_rows": 4,
+      "output_rows": 4,
+      "detail": {
+        "keys": [
+          {
+            "field": "t",
+            "direction": "asc",
+            "nulls": "first"
+          }
+        ],
+        "injected_for": "g"
+      },
+      "sort_call": {
+        "sort_node": "_sort_1_g",
+        "injected_for": "g",
+        "keys": [
+          {
+            "field": "t",
+            "direction": "asc",
+            "nulls": "first"
+          }
+        ],
+        "stable": true,
+        "input_rows": 4,
+        "output_rows": 4
+      }
+    },
+    {
+      "node_id": "g",
+      "op": "stream_group",
+      "inputs": [
+        "_sort_1_g"
+      ],
+      "input_rows": 4,
+      "output_rows": 4,
+      "detail": {
+        "keys": [
+          "t"
+        ],
+        "sum": "amount",
+        "required_prefix": [
+          {
+            "field": "t",
+            "direction": "asc",
+            "nulls": "first"
+          }
+        ],
+        "groups": 4
+      },
+      "sort_call": null
+    }
+  ],
+  "output_rows": [
+    {
+      "t": 1,
+      "count": 1,
+      "sum": 10
+    },
+    {
+      "t": 2,
+      "count": 1,
+      "sum": 30
+    },
+    {
+      "t": 3,
+      "count": 1,
+      "sum": 20
+    },
+    {
+      "t": 4,
+      "count": 1,
+      "sum": null
+    }
+  ]
+}

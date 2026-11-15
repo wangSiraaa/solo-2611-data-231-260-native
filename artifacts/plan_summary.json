@@ -1,0 +1,57 @@
+{
+  "plans": [
+    {
+      "plan_id": "already_grouped",
+      "sort_count": 0,
+      "injected_sorts": []
+    },
+    {
+      "plan_id": "crossing",
+      "sort_count": 1,
+      "injected_sorts": [
+        {
+          "id": "_sort_1_g",
+          "input": "u",
+          "keys": [
+            {
+              "field": "region",
+              "direction": "asc",
+              "nulls": "first"
+            },
+            {
+              "field": "tick",
+              "direction": "asc",
+              "nulls": "first"
+            }
+          ],
+          "injected_for": "g",
+          "reason": "可证明次序缺少排序键 ['region', 'tick']"
+        }
+      ]
+    },
+    {
+      "plan_id": "drop_leading",
+      "sort_count": 1,
+      "injected_sorts": [
+        {
+          "id": "_sort_1_g",
+          "input": "p",
+          "keys": [
+            {
+              "field": "t",
+              "direction": "asc",
+              "nulls": "first"
+            }
+          ],
+          "injected_for": "g",
+          "reason": "可证明次序缺少排序键 ['t']"
+        }
+      ]
+    },
+    {
+      "plan_id": "rename",
+      "sort_count": 0,
+      "injected_sorts": []
+    }
+  ]
+}

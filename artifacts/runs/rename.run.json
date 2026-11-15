@@ -1,0 +1,97 @@
+{
+  "plan_id": "rename",
+  "output": "g",
+  "sort_calls": [],
+  "sort_call_count": 0,
+  "total_input_rows": 0,
+  "total_output_rows": 1,
+  "node_records": [
+    {
+      "node_id": "l",
+      "op": "source",
+      "inputs": [],
+      "input_rows": 0,
+      "output_rows": 2,
+      "detail": {
+        "source": "left",
+        "declared_order": [
+          {
+            "field": "region",
+            "direction": "asc",
+            "nulls": "first"
+          },
+          {
+            "field": "tick",
+            "direction": "asc",
+            "nulls": "first"
+          }
+        ]
+      },
+      "sort_call": null
+    },
+    {
+      "node_id": "p",
+      "op": "project",
+      "inputs": [
+        "l"
+      ],
+      "input_rows": 2,
+      "output_rows": 2,
+      "detail": {
+        "mapping": {
+          "area": "region",
+          "time": "tick",
+          "amount": "amount"
+        }
+      },
+      "sort_call": null
+    },
+    {
+      "node_id": "f",
+      "op": "filter",
+      "inputs": [
+        "p"
+      ],
+      "input_rows": 2,
+      "output_rows": 1,
+      "detail": {
+        "predicate": {
+          "field": "amount",
+          "ge": 15
+        }
+      },
+      "sort_call": null
+    },
+    {
+      "node_id": "g",
+      "op": "stream_group",
+      "inputs": [
+        "f"
+      ],
+      "input_rows": 1,
+      "output_rows": 1,
+      "detail": {
+        "keys": [
+          "area"
+        ],
+        "sum": "amount",
+        "required_prefix": [
+          {
+            "field": "area",
+            "direction": "asc",
+            "nulls": "first"
+          }
+        ],
+        "groups": 1
+      },
+      "sort_call": null
+    }
+  ],
+  "output_rows": [
+    {
+      "area": "A",
+      "count": 1,
+      "sum": 20
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "plan_id": "already_grouped",
+  "output": "g",
+  "sort_calls": [],
+  "sort_call_count": 0,
+  "total_input_rows": 0,
+  "total_output_rows": 2,
+  "node_records": [
+    {
+      "node_id": "l",
+      "op": "source",
+      "inputs": [],
+      "input_rows": 0,
+      "output_rows": 2,
+      "detail": {
+        "source": "left",
+        "declared_order": [
+          {
+            "field": "region",
+            "direction": "asc",
+            "nulls": "first"
+          },
+          {
+            "field": "tick",
+            "direction": "asc",
+            "nulls": "first"
+          }
+        ]
+      },
+      "sort_call": null
+    },
+    {
+      "node_id": "r",
+      "op": "source",
+      "inputs": [],
+      "input_rows": 0,
+      "output_rows": 2,
+      "detail": {
+        "source": "right",
+        "declared_order": [
+          {
+            "field": "region",
+            "direction": "asc",
+            "nulls": "first"
+          },
+          {
+            "field": "tick",
+            "direction": "asc",
+            "nulls": "first"
+          }
+        ]
+      },
+      "sort_call": null
+    },
+    {
+      "node_id": "u",
+      "op": "concat",
+      "inputs": [
+        "l",
+        "r"
+      ],
+      "input_rows": 4,
+      "output_rows": 4,
+      "detail": {
+        "boundary_checks": [
+          {
+            "left": "l",
+            "right": "r",
+            "cmp": -1
+          }
+        ]
+      },
+      "sort_call": null
+    },
+    {
+      "node_id": "g",
+      "op": "stream_group",
+      "inputs": [
+        "u"
+      ],
+      "input_rows": 4,
+      "output_rows": 2,
+      "detail": {
+        "keys": [
+          "region"
+        ],
+        "sum": "amount",
+        "required_prefix": [
+          {
+            "field": "region",
+            "direction": "asc",
+            "nulls": "first"
+          }
+        ],
+        "groups": 2
+      },
+      "sort_call": null
+    }
+  ],
+  "output_rows": [
+    {
+      "region": "A",
+      "count": 2,
+      "sum": 30
+    },
+    {
+      "region": "B",
+      "count": 2,
+      "sum": 30
+    }
+  ]
+}

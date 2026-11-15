@@ -1,0 +1,243 @@
+{
+  "plan_id": "crossing",
+  "output": "g",
+  "sort_count": 1,
+  "injected_sorts": [
+    {
+      "id": "_sort_1_g",
+      "input": "u",
+      "keys": [
+        {
+          "field": "region",
+          "direction": "asc",
+          "nulls": "first"
+        },
+        {
+          "field": "tick",
+          "direction": "asc",
+          "nulls": "first"
+        }
+      ],
+      "injected_for": "g",
+      "reason": "可证明次序缺少排序键 ['region', 'tick']"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "l",
+      "op": "source",
+      "inputs": [],
+      "derived_order": [
+        {
+          "field": "region",
+          "direction": "asc",
+          "nulls": "first"
+        },
+        {
+          "field": "tick",
+          "direction": "asc",
+          "nulls": "first"
+        }
+      ],
+      "schema": {
+        "id": "int",
+        "region": "text",
+        "tick": "int",
+        "amount": "int?"
+      },
+      "evidence": "source left 声明并经真实数据逐相邻行核验: [region asc NULLS FIRST, tick asc NULLS FIRST]",
+      "invalid_reason": null,
+      "detail": {
+        "source": "left"
+      }
+    },
+    {
+      "id": "r",
+      "op": "source",
+      "inputs": [],
+      "derived_order": [
+        {
+          "field": "region",
+          "direction": "asc",
+          "nulls": "first"
+        },
+        {
+          "field": "tick",
+          "direction": "asc",
+          "nulls": "first"
+        }
+      ],
+      "schema": {
+        "id": "int",
+        "region": "text",
+        "tick": "int",
+        "amount": "int?"
+      },
+      "evidence": "source overlap 声明并经真实数据逐相邻行核验: [region asc NULLS FIRST, tick asc NULLS FIRST]",
+      "invalid_reason": null,
+      "detail": {
+        "source": "overlap"
+      }
+    },
+    {
+      "id": "u",
+      "op": "concat",
+      "inputs": [
+        "l",
+        "r"
+      ],
+      "derived_order": [],
+      "schema": {
+        "id": "int",
+        "region": "text",
+        "tick": "int",
+        "amount": "int?"
+      },
+      "evidence": "",
+      "invalid_reason": "边界倒退：l 末行 (region='A', tick=3) -> r 首行 (region='A', tick=2) 在 [region asc NULLS FIRST, tick asc NULLS FIRST] 下不是非递减",
+      "detail": {}
+    },
+    {
+      "id": "g",
+      "op": "stream_group",
+      "inputs": [
+        "_sort_1_g"
+      ],
+      "derived_order": [
+        {
+          "field": "region",
+          "direction": "asc",
+          "nulls": "first"
+        },
+        {
+          "field": "tick",
+          "direction": "asc",
+          "nulls": "first"
+        }
+      ],
+      "schema": {
+        "region": "text",
+        "tick": "int",
+        "count": "int",
+        "sum": "int?"
+      },
+      "evidence": "输入 u 无法证明分组前缀 [region asc NULLS FIRST, tick asc NULLS FIRST]（可证明次序缺少排序键 ['region', 'tick']），已插入显式 Sort _sort_1_g",
+      "invalid_reason": null,
+      "detail": {
+        "keys": [
+          "region",
+          "tick"
+        ],
+        "sum": "amount"
+      }
+    }
+  ],
+  "executable_plan": {
+    "id": "crossing",
+    "output": "g",
+    "nodes": [
+      {
+        "id": "l",
+        "op": "source",
+        "source": "left",
+        "derived_order": [
+          {
+            "field": "region",
+            "direction": "asc",
+            "nulls": "first"
+          },
+          {
+            "field": "tick",
+            "direction": "asc",
+            "nulls": "first"
+          }
+        ]
+      },
+      {
+        "id": "r",
+        "op": "source",
+        "source": "overlap",
+        "derived_order": [
+          {
+            "field": "region",
+            "direction": "asc",
+            "nulls": "first"
+          },
+          {
+            "field": "tick",
+            "direction": "asc",
+            "nulls": "first"
+          }
+        ]
+      },
+      {
+        "id": "u",
+        "op": "concat",
+        "inputs": [
+          "l",
+          "r"
+        ],
+        "order_claim": {
+          "status": "unproven",
+          "specs": [],
+          "boundary_checks": []
+        },
+        "derived_order": []
+      },
+      {
+        "id": "_sort_1_g",
+        "op": "sort",
+        "input": "u",
+        "keys": [
+          {
+            "field": "region",
+            "direction": "asc",
+            "nulls": "first"
+          },
+          {
+            "field": "tick",
+            "direction": "asc",
+            "nulls": "first"
+          }
+        ],
+        "stable": true,
+        "injected_for": "g",
+        "reason": "可证明次序缺少排序键 ['region', 'tick']",
+        "derived_order": [
+          {
+            "field": "region",
+            "direction": "asc",
+            "nulls": "first"
+          },
+          {
+            "field": "tick",
+            "direction": "asc",
+            "nulls": "first"
+          }
+        ]
+      },
+      {
+        "id": "g",
+        "op": "stream_group",
+        "input": "_sort_1_g",
+        "keys": [
+          "region",
+          "tick"
+        ],
+        "sum": "amount",
+        "derived_order": [
+          {
+            "field": "region",
+            "direction": "asc",
+            "nulls": "first"
+          },
+          {
+            "field": "tick",
+            "direction": "asc",
+            "nulls": "first"
+          }
+        ]
+      }
+    ]
+  }
+}

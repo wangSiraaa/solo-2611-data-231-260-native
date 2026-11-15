@@ -1,0 +1,189 @@
+{
+  "plan_id": "crossing",
+  "output": "g",
+  "sort_calls": [
+    {
+      "sort_node": "_sort_1_g",
+      "injected_for": "g",
+      "keys": [
+        {
+          "field": "region",
+          "direction": "asc",
+          "nulls": "first"
+        },
+        {
+          "field": "tick",
+          "direction": "asc",
+          "nulls": "first"
+        }
+      ],
+      "stable": true,
+      "input_rows": 4,
+      "output_rows": 4
+    }
+  ],
+  "sort_call_count": 1,
+  "total_input_rows": 0,
+  "total_output_rows": 4,
+  "node_records": [
+    {
+      "node_id": "l",
+      "op": "source",
+      "inputs": [],
+      "input_rows": 0,
+      "output_rows": 2,
+      "detail": {
+        "source": "left",
+        "declared_order": [
+          {
+            "field": "region",
+            "direction": "asc",
+            "nulls": "first"
+          },
+          {
+            "field": "tick",
+            "direction": "asc",
+            "nulls": "first"
+          }
+        ]
+      },
+      "sort_call": null
+    },
+    {
+      "node_id": "r",
+      "op": "source",
+      "inputs": [],
+      "input_rows": 0,
+      "output_rows": 2,
+      "detail": {
+        "source": "overlap",
+        "declared_order": [
+          {
+            "field": "region",
+            "direction": "asc",
+            "nulls": "first"
+          },
+          {
+            "field": "tick",
+            "direction": "asc",
+            "nulls": "first"
+          }
+        ]
+      },
+      "sort_call": null
+    },
+    {
+      "node_id": "u",
+      "op": "concat",
+      "inputs": [
+        "l",
+        "r"
+      ],
+      "input_rows": 4,
+      "output_rows": 4,
+      "detail": {
+        "boundary_checks": []
+      },
+      "sort_call": null
+    },
+    {
+      "node_id": "_sort_1_g",
+      "op": "sort",
+      "inputs": [
+        "u"
+      ],
+      "input_rows": 4,
+      "output_rows": 4,
+      "detail": {
+        "keys": [
+          {
+            "field": "region",
+            "direction": "asc",
+            "nulls": "first"
+          },
+          {
+            "field": "tick",
+            "direction": "asc",
+            "nulls": "first"
+          }
+        ],
+        "injected_for": "g"
+      },
+      "sort_call": {
+        "sort_node": "_sort_1_g",
+        "injected_for": "g",
+        "keys": [
+          {
+            "field": "region",
+            "direction": "asc",
+            "nulls": "first"
+          },
+          {
+            "field": "tick",
+            "direction": "asc",
+            "nulls": "first"
+          }
+        ],
+        "stable": true,
+        "input_rows": 4,
+        "output_rows": 4
+      }
+    },
+    {
+      "node_id": "g",
+      "op": "stream_group",
+      "inputs": [
+        "_sort_1_g"
+      ],
+      "input_rows": 4,
+      "output_rows": 4,
+      "detail": {
+        "keys": [
+          "region",
+          "tick"
+        ],
+        "sum": "amount",
+        "required_prefix": [
+          {
+            "field": "region",
+            "direction": "asc",
+            "nulls": "first"
+          },
+          {
+            "field": "tick",
+            "direction": "asc",
+            "nulls": "first"
+          }
+        ],
+        "groups": 4
+      },
+      "sort_call": null
+    }
+  ],
+  "output_rows": [
+    {
+      "region": "A",
+      "tick": 1,
+      "count": 1,
+      "sum": 10
+    },
+    {
+      "region": "A",
+      "tick": 2,
+      "count": 1,
+      "sum": 50
+    },
+    {
+      "region": "A",
+      "tick": 3,
+      "count": 1,
+      "sum": 20
+    },
+    {
+      "region": "B",
+      "tick": 1,
+      "count": 1,
+      "sum": 60
+    }
+  ]
+}

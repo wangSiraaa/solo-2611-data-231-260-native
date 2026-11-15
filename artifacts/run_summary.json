@@ -1,0 +1,24 @@
+{
+  "plans": [
+    {
+      "plan_id": "already_grouped",
+      "sort_call_count": 0,
+      "output_rows": 2
+    },
+    {
+      "plan_id": "crossing",
+      "sort_call_count": 1,
+      "output_rows": 4
+    },
+    {
+      "plan_id": "drop_leading",
+      "sort_call_count": 1,
+      "output_rows": 4
+    },
+    {
+      "plan_id": "rename",
+      "sort_call_count": 0,
+      "output_rows": 1
+    }
+  ]
+}

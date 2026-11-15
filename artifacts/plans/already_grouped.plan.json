@@ -1,0 +1,214 @@
+{
+  "plan_id": "already_grouped",
+  "output": "g",
+  "sort_count": 0,
+  "injected_sorts": [],
+  "nodes": [
+    {
+      "id": "l",
+      "op": "source",
+      "inputs": [],
+      "derived_order": [
+        {
+          "field": "region",
+          "direction": "asc",
+          "nulls": "first"
+        },
+        {
+          "field": "tick",
+          "direction": "asc",
+          "nulls": "first"
+        }
+      ],
+      "schema": {
+        "id": "int",
+        "region": "text",
+        "tick": "int",
+        "amount": "int?"
+      },
+      "evidence": "source left 声明并经真实数据逐相邻行核验: [region asc NULLS FIRST, tick asc NULLS FIRST]",
+      "invalid_reason": null,
+      "detail": {
+        "source": "left"
+      }
+    },
+    {
+      "id": "r",
+      "op": "source",
+      "inputs": [],
+      "derived_order": [
+        {
+          "field": "region",
+          "direction": "asc",
+          "nulls": "first"
+        },
+        {
+          "field": "tick",
+          "direction": "asc",
+          "nulls": "first"
+        }
+      ],
+      "schema": {
+        "id": "int",
+        "region": "text",
+        "tick": "int",
+        "amount": "int?"
+      },
+      "evidence": "source right 声明并经真实数据逐相邻行核验: [region asc NULLS FIRST, tick asc NULLS FIRST]",
+      "invalid_reason": null,
+      "detail": {
+        "source": "right"
+      }
+    },
+    {
+      "id": "u",
+      "op": "concat",
+      "inputs": [
+        "l",
+        "r"
+      ],
+      "derived_order": [
+        {
+          "field": "region",
+          "direction": "asc",
+          "nulls": "first"
+        },
+        {
+          "field": "tick",
+          "direction": "asc",
+          "nulls": "first"
+        }
+      ],
+      "schema": {
+        "id": "int",
+        "region": "text",
+        "tick": "int",
+        "amount": "int?"
+      },
+      "evidence": "各非空输入描述符一致且边界非递减（l末 (region='A', tick=3) <= r首 (region='B', tick=2)），concat 全局保持 [region asc NULLS FIRST, tick asc NULLS FIRST]",
+      "invalid_reason": null,
+      "detail": {}
+    },
+    {
+      "id": "g",
+      "op": "stream_group",
+      "inputs": [
+        "u"
+      ],
+      "derived_order": [
+        {
+          "field": "region",
+          "direction": "asc",
+          "nulls": "first"
+        }
+      ],
+      "schema": {
+        "region": "text",
+        "count": "int",
+        "sum": "int?"
+      },
+      "evidence": "输入 u 的可证明次序满足分组前缀 [region asc NULLS FIRST]：输入排序前缀与要求逐键一致，无需插入 Sort",
+      "invalid_reason": null,
+      "detail": {
+        "keys": [
+          "region"
+        ],
+        "sum": "amount"
+      }
+    }
+  ],
+  "executable_plan": {
+    "id": "already_grouped",
+    "output": "g",
+    "nodes": [
+      {
+        "id": "l",
+        "op": "source",
+        "source": "left",
+        "derived_order": [
+          {
+            "field": "region",
+            "direction": "asc",
+            "nulls": "first"
+          },
+          {
+            "field": "tick",
+            "direction": "asc",
+            "nulls": "first"
+          }
+        ]
+      },
+      {
+        "id": "r",
+        "op": "source",
+        "source": "right",
+        "derived_order": [
+          {
+            "field": "region",
+            "direction": "asc",
+            "nulls": "first"
+          },
+          {
+            "field": "tick",
+            "direction": "asc",
+            "nulls": "first"
+          }
+        ]
+      },
+      {
+        "id": "u",
+        "op": "concat",
+        "inputs": [
+          "l",
+          "r"
+        ],
+        "order_claim": {
+          "status": "proven",
+          "specs": [
+            {
+              "field": "region",
+              "direction": "asc",
+              "nulls": "first"
+            },
+            {
+              "field": "tick",
+              "direction": "asc",
+              "nulls": "first"
+            }
+          ],
+          "boundary_checks": [
+            "l末 (region='A', tick=3) <= r首 (region='B', tick=2)"
+          ]
+        },
+        "derived_order": [
+          {
+            "field": "region",
+            "direction": "asc",
+            "nulls": "first"
+          },
+          {
+            "field": "tick",
+            "direction": "asc",
+            "nulls": "first"
+          }
+        ]
+      },
+      {
+        "id": "g",
+        "op": "stream_group",
+        "input": "u",
+        "keys": [
+          "region"
+        ],
+        "sum": "amount",
+        "derived_order": [
+          {
+            "field": "region",
+            "direction": "asc",
+            "nulls": "first"
+          }
+        ]
+      }
+    ]
+  }
+}
