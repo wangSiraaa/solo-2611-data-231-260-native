@@ -1,0 +1,8 @@
+{"id": "b1", "known_at": 1, "entity": "d1", "from": 0, "to": 10, "kind": "assert", "value": 1}
+{"id": "b2", "known_at": 2, "entity": "d1", "from": 10, "to": 20, "kind": "assert", "value": 1.0}
+{"id": "b3", "known_at": 3, "entity": "d1", "from": 5, "to": 15, "kind": "assert", "value": true}
+{"id": "b4", "known_at": 4, "entity": "d1", "from": 8, "to": 12, "kind": "retract"}
+{"id": "b5", "known_at": 5, "entity": "d1", "from": 10, "to": 12, "kind": "assert", "value": true}
+{"id": "b6", "known_at": 6, "entity": "d1", "from": 8, "to": 10, "kind": "assert", "value": 1}
+{"id": "b7", "known_at": 7, "entity": "d1", "from": 0, "to": 5, "kind": "assert", "value": 1}
+{"id": "b8", "known_at": 8, "entity": "d1", "from": 15, "to": 20, "kind": "assert", "value": null}

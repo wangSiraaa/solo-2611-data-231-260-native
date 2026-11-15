@@ -1,0 +1,9 @@
+{"entity":"c1","valid_from":0,"valid_to":10,"sys_from":1,"sys_to":2,"value":"north"}
+{"entity":"c1","valid_from":0,"valid_to":3,"sys_from":2,"sys_to":null,"value":"north"}
+{"entity":"c1","valid_from":3,"valid_to":7,"sys_from":2,"sys_to":3,"value":"south"}
+{"entity":"c1","valid_from":7,"valid_to":10,"sys_from":2,"sys_to":3,"value":"north"}
+{"entity":"c1","valid_from":3,"valid_to":5,"sys_from":3,"sys_to":null,"value":"south"}
+{"entity":"c1","valid_from":9,"valid_to":10,"sys_from":3,"sys_to":5,"value":"north"}
+{"entity":"c1","valid_from":6,"valid_to":8,"sys_from":4,"sys_to":null,"value":"east"}
+{"entity":"c1","valid_from":8,"valid_to":null,"sys_from":5,"sys_to":null,"value":"north"}
+{"entity":"c2","valid_from":-5,"valid_to":null,"sys_from":6,"sys_to":null,"value":null}
